@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
+  <script type="text/javascript" src="build/ec-vcms.js"></script>
+  <link rel="stylesheet" href="https://icons.cdn.entrecode.de/ec-icons-1.0.9.css">
+  <link rel="stylesheet" href="build/ec-vcms.css">
+</head>
+<body ng-app="vcms">
+<div style="width: 50vw; height: 50vh; margin: 15vh 25vw; border: 1px solid black; padding: 20px; border-radius: 2px; overflow: scroll">
+  <ec-vcms json="json"><h1 style="text-align: center;">TEST</h1><p><b style="color: red;">BOLD</b></p><p><i>ITALIC</i></p><img src="https://unsplash.it/200/200"><p><small>tolles Bild</small></p></ec-vcms>
+</div>
+<code>{{json}}</code>
+</body>
+</html>

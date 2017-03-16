@@ -1,0 +1,20 @@
+.vcms-pop {
+  padding-bottom: 0;
+  max-width: rem(400);
+
+  .vcms-pop-footer {
+    @include transform(translateY(50%));
+    margin-top: 8px;
+
+    nav {
+      ul {
+        white-space: nowrap;
+        text-align: center;
+
+        li {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
