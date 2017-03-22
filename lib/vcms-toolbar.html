@@ -12,14 +12,14 @@
               ng-mousedown="vcms.execCommand('h1', $event)">h1</a></li>
           <li ng-class="{'active' : vcms.tag === 'h2'}"><a
               ng-mousedown="vcms.execCommand('h2', $event)">h2</a></li>
-          <li ng-class="{'active' : vcms.tag === 'h3'}"><a
-              ng-mousedown="vcms.execCommand('h3', $event)">h3</a></li>
-          <li ng-class="{'active' : vcms.tag === 'h4'}"><a
-              ng-mousedown="vcms.execCommand('h4', $event)">h4</a></li>
-          <li ng-class="{'active' : vcms.tag === 'h5'}"><a
-              ng-mousedown="vcms.execCommand('h5', $event)">h5</a></li>
-          <li ng-class="{'active' : vcms.tag === 'h6'}"><a
-              ng-mousedown="vcms.execCommand('h6', $event)">h6</a></li>
+          <!--<li ng-class="{'active' : vcms.tag === 'h3'}"><a-->
+          <!--ng-mousedown="vcms.execCommand('h3', $event)">h3</a></li>-->
+          <!--<li ng-class="{'active' : vcms.tag === 'h4'}"><a-->
+          <!--ng-mousedown="vcms.execCommand('h4', $event)">h4</a></li>-->
+          <!--<li ng-class="{'active' : vcms.tag === 'h5'}"><a-->
+          <!--ng-mousedown="vcms.execCommand('h5', $event)">h5</a></li>-->
+          <!--<li ng-class="{'active' : vcms.tag === 'h6'}"><a-->
+          <!--ng-mousedown="vcms.execCommand('h6', $event)">h6</a></li>-->
           <li ng-class="{'active' : vcms.tag === 'p'}"><a
               ng-mousedown="vcms.execCommand('p', $event)">p</a></li>
         </ul>
@@ -103,25 +103,25 @@
           </li>
         </ul>
       </li>
-      <li ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'blockquote'}">
-        <a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"
-           data-tooltip-position="bottom"
-           data-tooltip-delay>
-          <i class="ec-icon quote-closing"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode">
-        <a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"
-           data-tooltip-position="bottom"
-           data-tooltip-delay>
-          <i class="ec-icon img"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode">
-        <a href="" data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>
-          <i class="ec-icon smiley"></i>
-        </a>
-      </li>
+      <!--<li ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'blockquote'}">-->
+      <!--<a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"-->
+      <!--data-tooltip-position="bottom"-->
+      <!--data-tooltip-delay>-->
+      <!--<i class="ec-icon quote-closing"></i>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li ng-if="!vcms.htmlMode">-->
+      <!--<a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"-->
+      <!--data-tooltip-position="bottom"-->
+      <!--data-tooltip-delay>-->
+      <!--<i class="ec-icon img"></i>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li ng-if="!vcms.htmlMode">-->
+      <!--<a href="" data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>-->
+      <!--<i class="ec-icon smiley"></i>-->
+      <!--</a>-->
+      <!--</li>-->
       <li ng-if="!vcms.htmlMode">
         <a href="" data-tooltip="Weitere Elemente" data-tooltip-position="bottom"
            data-tooltip-delay>
@@ -130,49 +130,28 @@
       </li>
       <li ng-if="!vcms.htmlMode" class="divider"></li>
       <li ng-if="!vcms.htmlMode">
-        <a class="colorpicker">
+        <a class="colorpicker" ng-style="{backgroundColor: hasAttr('color')}">
           <span class="color-text"></span>
         </a>
         <ul class="vcms-toolbar-dropdown center">
-          <li ng-class="{'active' : hasClass('color-text')}">
-            <a class="colorpicker"
-               ng-mousedown="vcms.toggleClass('color-text', ['color-link', 'color-super', 'color-minor', 'color-highlight'])">
+          <li ng-class="{'active' : hasAttr('color', color)}" ng-repeat="color in vcms.colors">
+            <a class="colorpicker" ng-style="{backgroundColor: color}"
+               ng-mousedown="vcms.toggleAttribute({color: color})">
               <span class="color-text"></span>
             </a>
           </li>
-          <li ng-class="{'active' : hasClass('color-link')}">
-            <a class="colorpicker"
-               ng-mousedown="vcms.toggleClass('color-link', ['color-text', 'color-super', 'color-minor', 'color-highlight'])">
-              <span class="color-link"></span>
-            </a>
-          </li>
-          <li ng-class="{'active' : hasClass('color-super')}">
-            <a class="colorpicker"
-               ng-mousedown="vcms.toggleClass('color-super', ['color-link', 'color-text', 'color-minor', 'color-highlight'])">
-              <span class="color-super"></span>
-            </a>
-          </li>
-          <li ng-class="{'active' : hasClass('color-minor')}">
-            <a class="colorpicker"
-               ng-mousedown="vcms.toggleClass('color-minor', ['color-link', 'color-super', 'color-text', 'color-highlight'])">
-              <span class="color-minor"></span>
-            </a>
-          </li>
-          <li ng-class="{'active' : hasClass('color-highlight')}">
-            <a class="colorpicker"
-               ng-mousedown="vcms.toggleClass('color-highlight', ['color-link', 'color-super', 'color-minor', 'color-text'])">
-              <span class="color-highlight"></span>
-            </a>
+          <li>
+            <input type="text" ng-model="customColor" ng-change="vcms.toggleAttribute({color: customColor})">
           </li>
         </ul>
       </li>
       <li ng-if="!vcms.htmlMode" class="divider"></li>
-      <li ng-if="!vcms.htmlMode">
-        <a data-tooltip="Style Presets" data-tooltip-position="bottom" data-tooltip-delay>
-          <i class="ec-icon harry-potter"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode" class="divider"></li>
+      <!--<li ng-if="!vcms.htmlMode">-->
+      <!--<a data-tooltip="Style Presets" data-tooltip-position="bottom" data-tooltip-delay>-->
+      <!--<i class="ec-icon harry-potter"></i>-->
+      <!--</a>-->
+      <!--</li>-->
+      <!--<li ng-if="!vcms.htmlMode" class="divider"></li>-->
       <li ng-if="!vcms.htmlMode">
         <a ng-mousedown="vcms.execCommand('removeFormat', $event)"
            data-tooltip="Formatierung löschen"
@@ -200,21 +179,6 @@
         <a data-tooltip="Quellcode" data-tooltip-position="bottom" data-tooltip-delay
            ng-mousedown="vcms.toggleHtml($event)">
           <i class="ec-icon code"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
-
-<div class="vcms-toolbar-controls" ng-if="vcms.dirty">
-  <nav>
-    <ul>
-      <li>
-        <a href ng-mousedown="vcms.saveElement($event)" class="btn super">Speichern</a>
-      </li>
-      <li>
-        <a href="" ng-mousedown="vcms.resetElement($event)" class="btn minor">
-          <i class="ec-icon close"></i>
         </a>
       </li>
     </ul>

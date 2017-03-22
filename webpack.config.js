@@ -1,6 +1,4 @@
 const autoprefixer = require('autoprefixer');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -10,51 +8,65 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'ec-vcms.js',
   },
+  devtool: '#source-map',
+  target: 'web',
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: [{
+          loader: 'babel-loader',
+        }],
       },
       {
         test: /\.(scss|sass)$/,
-        loader: ExtractTextPlugin.extract('raw-loader!postcss-loader!sass-loader'),
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader!css-loader'),
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+        ],
       },
       {
         test: /\.html$/,
-        loader: 'raw-loader',
+        use: [{
+          loader: 'raw-loader',
+        }],
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: 'ec-vcms.css',
-      allChunks: false,
-    }),
-    new OptimizeCssAssetsPlugin({
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: {
-        discardComments: {
-          removeAll: true,
-        },
-        discardDuplicates: {
-          removeAll: true,
-        },
-      },
-      canPrint: false,
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         babel: {

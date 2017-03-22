@@ -1,6 +1,21 @@
 <div class="vcms-editor">
   <vcms-toolbar></vcms-toolbar>
+  <div class="vcms-toolbar-controls" ng-if="dirty">
+    <nav>
+      <ul>
+        <li>
+          <a href ng-mousedown="saveElement($event)" class="btn super">Speichern</a>
+        </li>
+        <li>
+          <a href="" ng-mousedown="resetElement($event)" class="btn minor">
+            <i class="ec-icon close"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
   <div class="html" ng-show="htmlMode"></div>
 
-  <ng-transclude class="content" ng-hide="htmlMode" contenteditable></ng-transclude>
+  <ng-transclude class="content" ng-hide="htmlMode"></ng-transclude>
 </div>
