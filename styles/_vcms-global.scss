@@ -2,14 +2,16 @@ ec-vcms {
   display: block;
   width: 100%;
   height: 100%;
+
   .CodeMirror {
     height: 100%;
   }
-  .html {
-    width: 100%;
-    height: 100%;
-    font-size: 13px;
-  }
+
+  //.html {
+  //  width: 100%;
+  //  height: 100%;
+  //}
+
   .content {
     display: block;
     outline: none;

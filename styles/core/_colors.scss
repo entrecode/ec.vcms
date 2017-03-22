@@ -1,0 +1,64 @@
+////
+/// colors.scss - 1.0.0
+/// @author Bernhard Ruoff
+///
+/// color map for xlcss based projects
+/// @param {variable} $colors [$colors] - set a custom variable for each project
+/// @require custom variable for $colors
+///
+/// TODO check for simplification
+/// TODO color function for btn.minor, btn.minorHover, state.hover
+
+// colormap
+$t5: (
+        base: (
+                "text": $text,
+                "background": $background,
+                "link": $link,
+                "linkHover": varColor($link, -10),
+                "super": $super,
+                "superHover": varColor($super, -10),
+                "highlight": $highlight,
+                "divider": rgba($text, .1),
+                "border": borderColor($background, $text)
+        ),
+        btn: (
+                "default": $link,
+                "defaultHover": varColor($link, -10),
+                "super": $super,
+                "superHover": varColor($super, -10),
+                "minor": rgba($minor, .1),
+                "minorHover": rgba($minor, .2),
+                "pill": rgba($text, .1),
+                "pillHover": rgba($text, .2)
+        ),
+        text: (
+                "invert": $background,
+                "highlight": $highlight,
+                "light": rgba($text, .6),
+                "lighter": rgba($text, .4),
+                "lightest": rgba($text, .2),
+        ),
+        background: (
+                "invert": $text,
+                "light": setColor($background, darken($background, 12), lighten($background, 12)),
+                "lighter": setColor($background, darken($background, 8), lighten($background, 8)),
+                "lightest": setColor($background, darken($background, 4), lighten($background, 4)),
+                "backdrop": setColor($background, rgba($text, .8), rgba($background, .8)),
+        ),
+        state: (
+                "hover": rgba(desaturate($link, 60), .1),
+                "selected": rgba(desaturate($link, 20), .4),
+                "active": $link,
+                "disabled": rgba($text, .2),
+                "notification": systemColor(#80D8FF),
+                "error": systemColor(red),
+                "success": systemColor(#00E676),
+                "warning": systemColor(orange),
+                "urgend": $super,
+                "marked": $highlight
+        )
+) !default;
+
+// set custom map-name for getColor function
+$colors: $t5;

@@ -1,3 +1,7 @@
+<div class="vcms-toolbar-placeholder" ng-hide="isTextElement() || isImgElement()">
+  Element auswählen
+</div>
+
 <div class="vcms-toolbar" ng-if="isTextElement() || vcms.htmlMode || vcms.isContainer()">
   <nav>
     <ul>
@@ -263,6 +267,7 @@
     </nav>
   </footer>
 </div>
+
 <div class="vcms-toolbar-dev" ng-if="vcms.tag">
   <nav>
     <ul>

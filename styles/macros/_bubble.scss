@@ -1,0 +1,21 @@
+////
+/// bubble.scss - 1.0.0
+/// @author Bernhard Ruoff
+///
+/// TODO additional styles for other states
+
+.bubble {
+  font-size: em(10);
+  line-height: rem(16);
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 0 rem(8);
+  @include border-radius(rem(8));
+
+  &.urgend {
+    background-color: getColor(state, urgend);
+    color: setColor(getColor(state, urgend));
+  }
+}
+

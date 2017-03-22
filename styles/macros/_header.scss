@@ -1,0 +1,86 @@
+////
+/// header - 1.0.0
+
+.header {
+  display: table;
+  vertical-align: middle;
+  width: 100%;
+  //margin-bottom: rem(16);
+
+  h1, h2, h3, h4, h5, h6 {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0;
+    padding: rem(16) 0;
+
+    .label {
+      vertical-align: text-top;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  nav {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+
+    ul {
+      @extend ul.inline;
+    }
+  }
+
+  &.stacked {
+    h1, h2, h3, h4, h5, h6 {
+      display: table-row;
+    }
+
+    p {
+      display: table-row;
+    }
+
+    nav {
+      display: table-row;
+      text-align: left;
+    }
+  }
+
+  &.small {
+    font-size: 1em;
+    margin-bottom: 0;
+  }
+
+  &.minor {
+    padding: rem(8) 0;
+    margin-bottom: rem(8);
+
+    h1, h2, h3, h4, h5, h6 {
+      @extend .h6;
+      margin: 0;
+      font-weight: bold;
+      display: inline-block;
+      color: getColor(text, light);
+      text-transform: uppercase;
+    }
+
+    .label {
+      margin-top: 0;
+    }
+  }
+
+  &.super {
+
+    h1, h2, h3, h4, h5, h6 {
+      @extend .mega;
+      margin: 0;
+      font-weight: normal;
+      display: inline-block;
+    }
+
+    .label {
+      margin-top: 0;
+    }
+  }
+}

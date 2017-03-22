@@ -1,0 +1,67 @@
+////
+/// TODO check for more modular, adaptable solution
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  width: 100%;
+
+  thead {
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: rem(8);
+      }
+      th {
+        text-align: left;
+        padding: rem(8);
+        padding-top: rem(16);
+      }
+    }
+  }
+}
+
+[data-container] {
+  &.table {
+    display: table;
+    width: 100%;
+    padding: 0;
+
+    [data-row] {
+      display: table-row;
+
+      [data-col] {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+/// table styles for divs
+.table {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+
+  &.fixed {
+    table-layout: fixed;
+  }
+}
+
+.table-row {
+  display: table-row;
+}
+
+.table-cell {
+  display: table-cell;
+
+  &.center {
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+  }
+}

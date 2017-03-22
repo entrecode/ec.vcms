@@ -1,0 +1,101 @@
+/// tooltip - 1.0.0
+
+%tooltip {
+  background-color: rgba(getColor(background, invert),.8);
+  color: getColor(text, invert);
+  position: absolute;
+  display: inline-block;
+  font-size: rem(10);
+  line-height: rem(20);
+  padding: 0 rem(8);
+  @extend %ellipsis;
+  max-width: rem(160);
+  @include border-radius(rem(4));
+}
+
+[data-tooltip] {
+  position: relative;
+
+  &:before {
+    visibility: hidden;
+    opacity: 0;
+    content: attr(data-tooltip);
+    @extend %tooltip;
+    @include transition(opacity .4s, transform .4s);
+  }
+
+  &:hover {
+    &:before{
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+[data-tooltip-position=left] {
+  &:before {
+    right: 100%;
+    top: 50%;
+    margin-top: rem(-10);
+    margin-right: rem(4);
+    @include transform(translateX(rem(-16)));
+  }
+
+  &:hover{
+    &:before{
+      @include transform(translateX(0));
+    }
+  }
+}
+
+[data-tooltip-position=right] {
+  &:before {
+    left: 100%;
+    top: 50%;
+    margin-top: rem(-10);
+    margin-left: rem(4);
+    @include transform(translateX(rem(16)));
+  }
+
+  &:hover{
+    &:before{
+      @include transform(translateX(0));
+    }
+  }
+}
+
+[data-tooltip-position=top] {
+  &:before {
+    bottom: 100%;
+    left: 50%;
+    margin-bottom: rem(4);
+    @include transform(translate3D(-50%, rem(16), 0));
+  }
+
+  &:hover{
+    &:before{
+      @include transform(translate3D(-50%, 0, 0));
+    }
+  }
+}
+
+[data-tooltip-position=bottom] {
+  &:before {
+    top: 100%;
+    left: 50%;
+    margin-top: rem(4);
+    @include transform(translate3D(-50%, rem(-16), 0));
+  }
+
+  &:hover{
+    &:before{
+      @include transform(translate3D(-50%, 0, 0));
+    }
+  }
+}
+
+[data-tooltip-delay] {
+  &:before {
+    @include transition-delay(.4s);
+  }
+}

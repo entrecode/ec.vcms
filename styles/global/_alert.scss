@@ -1,0 +1,40 @@
+/// alert.scss - 1.0.0
+///
+/// @author Bernhard Ruoff
+/// @example
+///   <p class="alert error">Error Message</p>
+
+.alert {
+  padding: rem(4) rem(8);
+  margin: rem(8) 0;
+  @include border-radius(2px);
+  font-size: em(14);
+  line-height: rem(20);
+  background-color: getColor(background, lightest);
+  text-align: center;
+
+  &.notification {
+    background-color: getColor(state, notification);
+    color: setColor(getColor(state, notification));
+  }
+
+  &.error {
+    background-color: getColor(state, error);
+    color: setColor(getColor(state, error));
+  }
+
+  &.success {
+    background-color: getColor(state, success);
+    color: setColor(getColor(state, success));
+  }
+
+  &.warning {
+    background-color: getColor(state, warning);
+    color: setColor(getColor(state, warning));
+  }
+
+  &.outlined {
+    border: 1px solid getColor(base, divider);
+    background-color: transparent;
+  }
+}
