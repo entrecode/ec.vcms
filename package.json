@@ -2,7 +2,7 @@
   "name": "ec-vcms",
   "version": "0.0.1",
   "description": "the wysiwyg-editor from entrecode.",
-  "main": "ec-vcms.js",
+  "main": "build/ec-vcms.js",
   "scripts": {
     "build": "webpack --config webpack.config.js -p",
     "watch": "webpack --config webpack.config.js --watch -d",
