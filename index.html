@@ -11,7 +11,16 @@
     .controller('ctrl', ($scope) => {
       $scope.config = {
         colors: ['lightgrey', 'orange', 'pink'],
-        tags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'p', 'blockquote'],
+        tags: ['h1', 'h2', 'p'],
+        custom: [{
+          title: 'lila',
+          command: (current, e) => {
+            const el = document.createElement('div');
+            el.appendChild(document.createTextNode('LILA'));
+            el.setAttribute('style', 'color: violet;');
+            current.after(el);
+          },
+        }],
         toolbar: [
           ['tags'],
           ['italic', 'bold', 'link', 'align', 'size'],
@@ -26,7 +35,7 @@
 </head>
 <body ng-app="vcms" ng-controller="ctrl">
 <div data-container>
-  <ec-vcms json="json" colors="ctrl.config.colors" config="config">
+  <ec-vcms json="json" colors="ctrl.config.colors">
     <h1 style="text-align: center;">TEST</h1>
     <p><b style="color: red;">BOLD</b></p>
     <p><i>ITALIC</i></p>

@@ -109,15 +109,20 @@
           </a>
         </div>
         <div ng-if="!vcms.htmlMode" ng-switch-when="icon">
-          <a href="" data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>
+          <a data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon smiley"></i>
           </a>
         </div>
         <div ng-if="!vcms.htmlMode" ng-switch-when="custom">
-          <a href="" data-tooltip="Weitere Elemente" data-tooltip-position="bottom"
+          <a data-tooltip="Weitere Elemente" data-tooltip-position="bottom"
              data-tooltip-delay>
             <i class="ec-icon add"></i>
           </a>
+          <ul class="vcms-toolbar-dropdown center">
+            <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
+              <a ng-mousedown="custom.command(vcms.currentElement, $event)">{{custom.title}}</a>
+            </li>
+          </ul>
         </div>
         <div ng-if="!vcms.htmlMode" ng-switch-when="colors">
           <a class="colorpicker" ng-style="{backgroundColor: hasAttr('color')}">
@@ -210,10 +215,10 @@
     <nav>
       <ul>
         <li>
-          <a href="" class="btn super" ng-mousedown="vcms.saveImage($event);">Speichern</a>
+          <a class="btn super" ng-mousedown="vcms.saveImage($event);">Speichern</a>
         </li>
         <li>
-          <a href="" class="btn minor" ng-mousedown="vcms.resetImage($event);">
+          <a class="btn minor" ng-mousedown="vcms.resetImage($event);">
             <i class="ec-icon close"></i>
           </a>
         </li>
