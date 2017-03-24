@@ -4,182 +4,172 @@
 
 <div class="vcms-toolbar" ng-if="isTextElement() || vcms.htmlMode || vcms.isContainer()">
   <nav>
-    <ul>
-      <li ng-if="!vcms.htmlMode" class="vcms-element-format">
-        <a class="tag">{{vcms.tag}}</a>
-        <ul class="vcms-toolbar-dropdown center">
-          <li ng-class="{'active' : vcms.tag === 'h1'}"><a
-              ng-mousedown="vcms.execCommand('h1', $event)">h1</a></li>
-          <li ng-class="{'active' : vcms.tag === 'h2'}"><a
-              ng-mousedown="vcms.execCommand('h2', $event)">h2</a></li>
-          <!--<li ng-class="{'active' : vcms.tag === 'h3'}"><a-->
-          <!--ng-mousedown="vcms.execCommand('h3', $event)">h3</a></li>-->
-          <!--<li ng-class="{'active' : vcms.tag === 'h4'}"><a-->
-          <!--ng-mousedown="vcms.execCommand('h4', $event)">h4</a></li>-->
-          <!--<li ng-class="{'active' : vcms.tag === 'h5'}"><a-->
-          <!--ng-mousedown="vcms.execCommand('h5', $event)">h5</a></li>-->
-          <!--<li ng-class="{'active' : vcms.tag === 'h6'}"><a-->
-          <!--ng-mousedown="vcms.execCommand('h6', $event)">h6</a></li>-->
-          <li ng-class="{'active' : vcms.tag === 'p'}"><a
-              ng-mousedown="vcms.execCommand('p', $event)">p</a></li>
-        </ul>
-      </li>
-      <li ng-if="!vcms.htmlMode" class="divider"></li>
-      <li ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'em'}">
-        <a ng-mousedown="vcms.execCommand('italic', $event)">
-          <i class="ec-icon italic"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'strong'}">
-        <a ng-mousedown="vcms.execCommand('bold', $event)">
-          <i class="ec-icon bold"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'a'}">
-        <a ng-mousedown="vcms.execCommand('createLink', $event)">
-          <i class="ec-icon link"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode">
-        <a>
-          <i class="ec-icon"
-             ng-class="{'align-left': hasAttr('text-align', 'left') || !hasAttr('text-align'), 'align-center': hasAttr('text-align', 'center'), 'align-right': hasAttr('text-align', 'right')}"></i>
-        </a>
-        <ul class="vcms-toolbar-dropdown center">
-          <li ng-class="{'active' : hasAttr('text-align', 'left') || !hasAttr('text-align')}">
-            <a ng-mousedown="vcms.execCommand('justifyLeft', $event)">
-              <i class="ec-icon align-left"></i>
-            </a>
-          </li>
-          <li ng-class="{'active' : hasAttr('text-align', 'center')}">
-            <a ng-mousedown="vcms.execCommand('justifyCenter', $event)">
-              <i class="ec-icon align-center"></i>
-            </a>
-          </li>
-          <li ng-class="{'active' : hasAttr('text-align', 'right')}">
-            <a ng-mousedown="vcms.execCommand('justifyRight', $event)">
-              <i class="ec-icon align-right"></i>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li ng-if="!vcms.htmlMode">
-        <a>
-          <i class="ec-icon font-size"></i>
-        </a>
-        <ul class="vcms-toolbar-dropdown center">
-          <li ng-class="{'active' : hasClass('text-big')}">
-            <a ng-mousedown="vcms.toggleClass('text-big', ['text-small'])">
-              groß
-            </a>
-          </li>
-          <li ng-class="{'active' : !hasClass('text-big') && vcms.tag !== 'small'}">
-            <a ng-mousedown="vcms.execCommand('p', $event); vcms.toggleClass(null, ['text-big', 'text-small']);">
-              normal
-            </a>
-          </li>
-          <li ng-class="{'active' : vcms.tag === 'small'}">
-            <a ng-mousedown="vcms.toggleClass('text-small', ['text-big']);">
-              klein
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li ng-if="!vcms.htmlMode" class="divider"></li>
-      <li ng-if="!vcms.htmlMode">
-        <a>
-          <i class="ec-icon list-bullets"></i>
-        </a>
-        <ul class="vcms-toolbar-dropdown center">
-          <li ng-class="{'active' : hasChild('ul')}">
-            <a ng-mousedown="vcms.execCommand('insertUnorderedList', $event)">
-              <i class="ec-icon list-bullets"></i>
-            </a>
-          </li>
-          <li ng-class="{'active' : hasChild('ol')}">
-            <a ng-mousedown="vcms.execCommand('insertOrderedList', $event)">
-              <i class="ec-icon list-number"></i>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <!--<li ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'blockquote'}">-->
-      <!--<a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"-->
-      <!--data-tooltip-position="bottom"-->
-      <!--data-tooltip-delay>-->
-      <!--<i class="ec-icon quote-closing"></i>-->
-      <!--</a>-->
-      <!--</li>-->
-      <!--<li ng-if="!vcms.htmlMode">-->
-      <!--<a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"-->
-      <!--data-tooltip-position="bottom"-->
-      <!--data-tooltip-delay>-->
-      <!--<i class="ec-icon img"></i>-->
-      <!--</a>-->
-      <!--</li>-->
-      <!--<li ng-if="!vcms.htmlMode">-->
-      <!--<a href="" data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>-->
-      <!--<i class="ec-icon smiley"></i>-->
-      <!--</a>-->
-      <!--</li>-->
-      <li ng-if="!vcms.htmlMode">
-        <a href="" data-tooltip="Weitere Elemente" data-tooltip-position="bottom"
-           data-tooltip-delay>
-          <i class="ec-icon add"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode" class="divider"></li>
-      <li ng-if="!vcms.htmlMode">
-        <a class="colorpicker" ng-style="{backgroundColor: hasAttr('color')}">
-          <span class="color-text"></span>
-        </a>
-        <ul class="vcms-toolbar-dropdown center">
-          <li ng-class="{'active' : hasAttr('color', color)}" ng-repeat="color in vcms.colors">
-            <a class="colorpicker" ng-style="{backgroundColor: color}"
-               ng-mousedown="vcms.toggleAttribute({color: color})">
-              <span class="color-text"></span>
-            </a>
-          </li>
-          <li>
-            <input type="text" ng-model="customColor" ng-change="vcms.toggleAttribute({color: customColor})">
-          </li>
-        </ul>
-      </li>
-      <li ng-if="!vcms.htmlMode" class="divider"></li>
-      <!--<li ng-if="!vcms.htmlMode">-->
-      <!--<a data-tooltip="Style Presets" data-tooltip-position="bottom" data-tooltip-delay>-->
-      <!--<i class="ec-icon harry-potter"></i>-->
-      <!--</a>-->
-      <!--</li>-->
-      <!--<li ng-if="!vcms.htmlMode" class="divider"></li>-->
-      <li ng-if="!vcms.htmlMode">
-        <a ng-mousedown="vcms.execCommand('removeFormat', $event)"
-           data-tooltip="Formatierung löschen"
-           data-tooltip-position="bottom"
-           data-tooltip-delay>
-          <i class="ec-icon format-clear"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode" class="divider"></li>
-      <li ng-if="!vcms.htmlMode">
-        <a ng-mousedown="vcms.execCommand('undo', $event)" data-tooltip="rückgängig machen"
-           data-tooltip-position="bottom"
-           data-tooltip-delay>
-          <i class="ec-icon undo"></i>
-        </a>
-      </li>
-      <li ng-if="!vcms.htmlMode">
-        <a ng-mousedown="vcms.execCommand('redo', $event)" data-tooltip="wiederherstellen"
-           data-tooltip-position="bottom"
-           data-tooltip-delay>
-          <i class="ec-icon redo"></i>
-        </a>
-      </li>
-      <li>
-        <a data-tooltip="Quellcode" data-tooltip-position="bottom" data-tooltip-delay
-           ng-mousedown="vcms.toggleHtml($event)">
-          <i class="ec-icon code"></i>
-        </a>
+    <ul ng-repeat="toolbar in vcms.config.toolbar" class="divider">
+      <li ng-repeat="menu in toolbar" class="vcms-element-format" ng-switch="menu">
+        <div ng-if="!vcms.htmlMode" class="vcms-element-format" ng-switch-when="tags">
+          <a class="tag">{{vcms.tag}}</a>
+          <ul class="vcms-toolbar-dropdown center">
+            <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="tag in vcms.config.tags">
+              <a ng-mousedown="vcms.execCommand(tag, $event)">{{tag}}</a>
+            </li>
+          </ul>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'em'}"
+             ng-switch-when="italic">
+          <a ng-mousedown="vcms.execCommand('italic', $event)">
+            <i class="ec-icon italic"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'strong'}"
+             ng-switch-when="strong">
+          <a ng-mousedown="vcms.execCommand('bold', $event)">
+            <i class="ec-icon bold"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'a'}" ng-switch-when="link">
+          <a ng-mousedown="vcms.execCommand('createLink', $event)">
+            <i class="ec-icon link"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="align">
+          <a>
+            <i class="ec-icon"
+               ng-class="{'align-left': hasAttr('text-align', 'left') || !hasAttr('text-align'), 'align-center': hasAttr('text-align', 'center'), 'align-right': hasAttr('text-align', 'right')}"></i>
+          </a>
+          <ul class="vcms-toolbar-dropdown center">
+            <li ng-class="{'active' : hasAttr('text-align', 'left') || !hasAttr('text-align')}">
+              <a ng-mousedown="vcms.execCommand('justifyLeft', $event)">
+                <i class="ec-icon align-left"></i>
+              </a>
+            </li>
+            <li ng-class="{'active' : hasAttr('text-align', 'center')}">
+              <a ng-mousedown="vcms.execCommand('justifyCenter', $event)">
+                <i class="ec-icon align-center"></i>
+              </a>
+            </li>
+            <li ng-class="{'active' : hasAttr('text-align', 'right')}">
+              <a ng-mousedown="vcms.execCommand('justifyRight', $event)">
+                <i class="ec-icon align-right"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="size">
+          <a>
+            <i class="ec-icon font-size"></i>
+          </a>
+          <ul class="vcms-toolbar-dropdown center">
+            <li ng-class="{'active' : hasClass('text-big')}">
+              <a ng-mousedown="vcms.toggleClass('text-big', ['text-small'])">
+                groß
+              </a>
+            </li>
+            <li ng-class="{'active' : !hasClass('text-big') && vcms.tag !== 'small'}">
+              <a ng-mousedown="vcms.execCommand('p', $event); vcms.toggleClass(null, ['text-big', 'text-small']);">
+                normal
+              </a>
+            </li>
+            <li ng-class="{'active' : vcms.tag === 'small'}">
+              <a ng-mousedown="vcms.toggleClass('text-small', ['text-big']);">
+                klein
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="list">
+          <a>
+            <i class="ec-icon list-bullets"></i>
+          </a>
+          <ul class="vcms-toolbar-dropdown center">
+            <li ng-class="{'active' : hasChild('ul')}">
+              <a ng-mousedown="vcms.execCommand('insertUnorderedList', $event)">
+                <i class="ec-icon list-bullets"></i>
+              </a>
+            </li>
+            <li ng-class="{'active' : hasChild('ol')}">
+              <a ng-mousedown="vcms.execCommand('insertOrderedList', $event)">
+                <i class="ec-icon list-number"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'blockquote'}"
+             ng-switch-when="blockquote">
+          <a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"
+             data-tooltip-position="bottom"
+             data-tooltip-delay>
+            <i class="ec-icon quote-closing"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="image">
+          <a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"
+             data-tooltip-position="bottom"
+             data-tooltip-delay>
+            <i class="ec-icon img"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="icon">
+          <a href="" data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>
+            <i class="ec-icon smiley"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="custom">
+          <a href="" data-tooltip="Weitere Elemente" data-tooltip-position="bottom"
+             data-tooltip-delay>
+            <i class="ec-icon add"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="colors">
+          <a class="colorpicker" ng-style="{backgroundColor: hasAttr('color')}">
+            <span class="color-text"></span>
+          </a>
+          <ul class="vcms-toolbar-dropdown center">
+            <li ng-class="{'active' : hasAttr('color', color)}"
+                ng-repeat="color in vcms.config.colors">
+              <a class="colorpicker" ng-style="{backgroundColor: color}"
+                 ng-mousedown="vcms.toggleAttribute({color: color})">
+                <span class="color-text"></span>
+              </a>
+            </li>
+            <li>
+              <input type="text" ng-model="customColor"
+                     ng-change="vcms.toggleAttribute({color: customColor})">
+            </li>
+          </ul>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="presets">
+          <a data-tooltip="Style Presets" data-tooltip-position="bottom" data-tooltip-delay>
+            <i class="ec-icon harry-potter"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="reset">
+          <a ng-mousedown="vcms.execCommand('removeFormat', $event)"
+             data-tooltip="Formatierung löschen"
+             data-tooltip-position="bottom"
+             data-tooltip-delay>
+            <i class="ec-icon format-clear"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="undo">
+          <a ng-mousedown="vcms.execCommand('undo', $event)" data-tooltip="rückgängig machen"
+             data-tooltip-position="bottom"
+             data-tooltip-delay>
+            <i class="ec-icon undo"></i>
+          </a>
+        </div>
+        <div ng-if="!vcms.htmlMode" ng-switch-when="redo">
+          <a ng-mousedown="vcms.execCommand('redo', $event)" data-tooltip="wiederherstellen"
+             data-tooltip-position="bottom"
+             data-tooltip-delay>
+            <i class="ec-icon redo"></i>
+          </a>
+        </div>
+        <div ng-switch-when="html">
+          <a data-tooltip="Quellcode" data-tooltip-position="bottom" data-tooltip-delay
+             ng-mousedown="vcms.toggleHtml($event)">
+            <i class="ec-icon code"></i>
+          </a>
+        </div>
       </li>
     </ul>
   </nav>

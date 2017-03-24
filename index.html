@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ec-vcms</title>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
+  <script type="text/javascript" src="build/ec-vcms.js"></script>
+  <script>
+    angular.module('vcms')
+    .controller('ctrl', ($scope) => {
+      $scope.config = {
+        colors: ['lightgrey', 'orange', 'pink'],
+        tags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'p', 'blockquote'],
+        toolbar: [
+          ['tags'],
+          ['italic', 'bold', 'link', 'align', 'size'],
+          ['list', 'custom'],
+          ['colors'],
+          ['reset'],
+          ['undo', 'redo', 'html'],
+        ],
+      }
+    });
+  </script>
+</head>
+<body ng-app="vcms" ng-controller="ctrl">
+<div data-container>
+  <ec-vcms json="json" colors="ctrl.config.colors" config="config">
+    <h1 style="text-align: center;">TEST</h1>
+    <p><b style="color: red;">BOLD</b></p>
+    <p><i>ITALIC</i></p>
+    <img src="https://unsplash.it/200/200">
+    <p>
+      <small>tolles Bild</small>
+    </p>
+  </ec-vcms>
+  <code style="white-space: pre-line">{{json}}</code>
+</div>
+</body>
+</html>

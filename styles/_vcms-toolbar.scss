@@ -4,6 +4,13 @@
 
   > nav {
     > ul {
+      &.divider {
+        background-color: getColor(base, divider);
+        margin: 0 rem(4);
+        height: rem(40);
+        display: inline-block;
+      }
+
       > li {
         display: inline-block;
         position: relative;
@@ -87,13 +94,6 @@
             background-color: getColor(state, hover);
             color: getColor(base, link);
           }
-        }
-
-        &.divider {
-          width: 1px;
-          background-color: getColor(base, divider);
-          margin: 0 rem(4);
-          height: rem(40);
         }
 
         &.vcms-element-format,
