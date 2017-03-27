@@ -31,7 +31,6 @@ ul.dropdown {
     cursor: pointer;
 
     > a {
-      &:hover,
       &:focus {
         & + ul.dropdown-options {
           display: inherit;
@@ -39,8 +38,7 @@ ul.dropdown {
         }
       }
     }
-
-    &:hover,
+    
     &:focus {
       > .btn {
         @extend .btn.active;
@@ -64,6 +62,49 @@ ul.dropdown {
       }
     }
   }
+
+  &:not(.focus-only) {
+    > li {
+      position: relative;
+      outline: none;
+      cursor: pointer;
+
+      > a {
+        &:hover,
+        &:focus {
+          & + ul.dropdown-options {
+            display: inherit;
+            opacity: 1;
+          }
+        }
+      }
+
+      &:hover,
+      &:focus {
+        > .btn {
+          @extend .btn.active;
+        }
+
+        > .btn.minor {
+          @extend .btn.minor.active;
+        }
+
+        > .btn.super {
+          @extend .btn.super.active;
+        }
+
+        > .btn.clear {
+          @extend .btn.clear.active;
+        }
+
+        ul.dropdown-options {
+          display: inherit;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
 
   ul.dropdown-options {
     position: absolute;

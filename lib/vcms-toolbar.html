@@ -154,7 +154,7 @@
         </ul>
 
         <!--colorpicker-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="colors" class="vcms-colorpicker dropdown">
+        <ul ng-if="!vcms.htmlMode" ng-switch-when="colors" class="vcms-colorpicker dropdown focus-only">
           <li tabindex="0">
             <a ng-style="{backgroundColor: hasAttr('color')}" ng-class="{'untouched' : !hasAttr('color', color)}"></a>
             <ul class="dropdown-options center">
