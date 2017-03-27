@@ -1,0 +1,89 @@
+%toolbar {
+  background-color: getColor(base, background);
+  margin: rem(8) rem(-4);
+
+  nav {
+    ul.vcms-toolbar-group {
+      margin: 0 rem(4);
+      display: inline-block;
+
+      > li {
+        background-color: getColor(background, lightest);
+        display: inline-block;
+        position: relative;
+
+        .active {
+          > a {
+            background-color: getColor(state, hover);
+            font-weight: bold;
+            color: getColor(base, text);
+          }
+        }
+
+
+        a {
+          color: getColor(text, light);
+          display: inline-block;
+          min-width: rem(40);
+          height: rem(40);
+          font-size: em(16);
+          line-height: rem(24);
+          padding: rem(8);
+          text-align: center;
+          @include border-radius(rem(4));
+          cursor: pointer;
+          @include user-select(none);
+
+          &:hover {
+            background-color: getColor(state, hover);
+            color: getColor(base, link);
+          }
+        }
+
+        .vcms-tags {
+          > li {
+            > a {
+              font-weight: bold;
+              color: getColor(base, text);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.vcms-toolbar {
+  @extend %toolbar;
+}
+
+.vcms-toolbar-dev {
+  @extend %toolbar;
+}
+
+.vcms-toolbar-controls {
+  @include transition(all .4s);
+
+  nav {
+    @include transform(translateX(24px));
+
+    ul {
+      text-align: center;
+
+      li {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.vcms-toolbar-placeholder {
+  background-color: getColor(background, lightest);
+  font-size: rem(14);
+  line-height: rem(24);
+  color: getColor(text, light);
+  font-style: italic;
+  text-align: center;
+  margin: rem(8) 0;
+  padding: rem(8);
+}
