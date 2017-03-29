@@ -154,28 +154,33 @@
         </ul>
 
         <!--colorpicker-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="colors"
-            class="vcms-colorpicker dropdown focus-only">
-          <li tabindex="0">
-            <a ng-style="{backgroundColor: hasAttr('color')}"
-               ng-class="{'untouched' : !hasAttr('color', color)}"></a>
-            <ul class="dropdown-options center">
+        <div ng-if="!vcms.htmlMode" ng-switch-when="colors"
+             class="vcms-colorpicker">
+          <a ng-style="{backgroundColor: hasAttr('color')}"
+             ng-click="colorpickerActive =! colorpickerActive"
+             ng-class="{'untouched' : !hasAttr('color', color)}" class="vcms-colorpicker-selected">
+          </a>
+          <div class="vcms-colorpicker-options" ng-class="{'active' : colorpickerActive}">
+            <div class="vcms-colorpicker-close" ng-click="colorpickerActive =! colorpickerActive">
+              &times;
+            </div>
+            <ul class="vmcs-colorpicker-available">
               <li ng-class="{'active' : hasAttr('color', color)}"
                   ng-repeat="color in vcms.config.colors">
                 <a ng-style="{backgroundColor: color}"
                    ng-mousedown="vcms.toggleAttribute({color: color})"></a>
               </li>
-              <li>
-                <label>
-                  <small>HEX</small>
-                  <input type="text" ng-model="customColor"
-                         ng-change="vcms.toggleAttribute({color: customColor})"
-                         placeholder="z.B.: #ff5500">
-                </label>
-              </li>
             </ul>
-          </li>
-        </ul>
+            <div class="vcms-colopicker-input">
+              <label>
+                <small>HEX</small>
+                <input type="text" ng-model="customColor"
+                       ng-change="vcms.toggleAttribute({color: customColor})"
+                       placeholder="z.B.: #ff5500">
+              </label>
+            </div>
+          </div>
+        </div>
 
         <!--presets-->
         <div ng-if="!vcms.htmlMode" ng-switch-when="presets">

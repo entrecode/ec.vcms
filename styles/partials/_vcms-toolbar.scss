@@ -33,6 +33,7 @@
           @include border-radius(rem(4));
           cursor: pointer;
           @include user-select(none);
+          overflow: hidden;
 
           &:hover {
             background-color: getColor(state, hover);

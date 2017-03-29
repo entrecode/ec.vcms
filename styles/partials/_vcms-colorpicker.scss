@@ -1,19 +1,51 @@
 .vcms-colorpicker {
+  position: relative;
 
-  > li {
-    > a {
-      border: rem(1) solid getColor(base, divider);
-      @include box-shadow(inset 0 0 0 4px getColor(base, background));
+  .vcms-colorpicker-selected {
+    @include box-shadow(inset 0 0 4px rgba(black,.2));
+    border: 1px solid white;
 
-      &.untouched {
-        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+CjxyZWN0IHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0iYmxhY2siIGZpbGwtb3BhY2l0eT0iLjEiPjwvcmVjdD4KPHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0iYmxhY2siIGZpbGwtb3BhY2l0eT0iLjEiPjwvcmVjdD4KPC9zdmc+");
-        @include background-size(rem(16));
-        background-position: center;
-      }
+    &.untouched {
+      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+CjxyZWN0IHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0iYmxhY2siIGZpbGwtb3BhY2l0eT0iLjEiPjwvcmVjdD4KPHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjgiIGhlaWdodD0iOCIgZmlsbD0iYmxhY2siIGZpbGwtb3BhY2l0eT0iLjEiPjwvcmVjdD4KPC9zdmc+");
+      @include background-size(rem(16));
+      background-position: center;
+    }
+  }
+
+  .vcms-colorpicker-options {
+    width: rem((32 * 5) + 8);
+    position: absolute;
+    top: 100%;
+    background-color: getColor(base, background);
+    @include border-radius(rem($dropdown-radius));
+    @extend %shadow%dropdown;
+    @include transition(all .4s);
+    max-height: 320px;
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 100;
+    padding: rem(4);
+    padding-top: rem(24);
+    margin: 0;
+
+    .vcms-colorpicker-close {
+      position: absolute;
+      @extend .btn, .btn.small, .btn.clear;
+      top: 0;
+      right: 0;
     }
 
-    ul.dropdown-options {
-      width: rem((32 * 5) + 8);
+    &.active {
+      visibility: visible;
+      opacity: 1;
+
+    }
+
+    ul.vmcs-colorpicker-available {
+      list-style: none;
+      margin: rem(8) 0;
+      padding: 0;
 
       li {
         display: inline-block;
@@ -22,17 +54,19 @@
           width: rem(32);
           height: rem(32);
           min-width: inherit;
-          @include border-radius(0);
-          border: rem(1) solid getColor(base, divider);
-          @include box-shadow(inset 0 0 0 2px getColor(base, background));
+          @include border-radius(50% !important);
+          @include box-shadow(inset 0 0 4px rgba(black,.2));
+          border: 4px solid white;
         }
+      }
+    }
 
-        label {
-          margin-top: rem(8);
-          background-color: getColor(background, lightest);
-          padding: rem(4);
-          @include border-radius(rem(2));
-        }
+    .vcms-colopicker-input {
+      label {
+        margin-top: rem(8);
+        background-color: getColor(background, lightest);
+        padding: rem(4);
+        @include border-radius(rem(2));
       }
     }
   }
