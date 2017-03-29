@@ -10,7 +10,7 @@
 
         <!--Format-->
         <ul ng-if="!vcms.htmlMode" ng-switch-when="tags" class="vcms-tags dropdown">
-          <li  tabindex="0">
+          <li tabindex="0">
             <a>{{vcms.tag}}</a>
             <ul class="dropdown-options center">
               <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="tag in vcms.config.tags">
@@ -154,9 +154,11 @@
         </ul>
 
         <!--colorpicker-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="colors" class="vcms-colorpicker dropdown focus-only">
+        <ul ng-if="!vcms.htmlMode" ng-switch-when="colors"
+            class="vcms-colorpicker dropdown focus-only">
           <li tabindex="0">
-            <a ng-style="{backgroundColor: hasAttr('color')}" ng-class="{'untouched' : !hasAttr('color', color)}"></a>
+            <a ng-style="{backgroundColor: hasAttr('color')}"
+               ng-class="{'untouched' : !hasAttr('color', color)}"></a>
             <ul class="dropdown-options center">
               <li ng-class="{'active' : hasAttr('color', color)}"
                   ng-repeat="color in vcms.config.colors">
@@ -167,7 +169,8 @@
                 <label>
                   <small>HEX</small>
                   <input type="text" ng-model="customColor"
-                         ng-change="vcms.toggleAttribute({color: customColor})" placeholder="z.B.: #ff5500">
+                         ng-change="vcms.toggleAttribute({color: customColor})"
+                         placeholder="z.B.: #ff5500">
                 </label>
               </li>
             </ul>
@@ -224,7 +227,7 @@
         <a ng-mousedown="vcms.addElement($event)">
           <i class="ec-icon add"></i>
         </a>
-      </li ng-if="vcms.tag">
+      </li>
       <li>
         <a ng-mousedown="vcms.deleteElement($event)">
           <i class="ec-icon trash"></i>
