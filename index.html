@@ -12,6 +12,26 @@
       $scope.config = {
         colors: ['lightgrey', 'orange', 'pink'],
         tags: ['h1', 'h2', 'p'],
+        synonyms: {
+          h1: 'Headline 1',
+          h2: 'Headline 2',
+          h3: 'Headline 3',
+          h4: 'Headline 4',
+          h5: 'Headline 5',
+          h6: 'Headline 6',
+          p: 'Absatz',
+          blockquote: 'Zitat',
+          cite: 'Zitat',
+          a: 'Link',
+          ol: 'Liste',
+          ul: 'Liste',
+          div: 'Block',
+          span: 'Inline',
+          strong: 'Fett',
+          em: 'Kursiv',
+          img: 'Bild',
+          small: 'Kleiner',
+        },
         custom: [{
           title: '<div style="color: violet;">LILA</div>',
           command: (current, e) => {

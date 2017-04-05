@@ -21,10 +21,10 @@
         <!--Format-->
         <ul ng-switch-when="tags" class="vcms-tags dropdown">
           <li tabindex="0">
-            <a>{{vcms.tag}}</a>
+            <a>{{getSynonym()}}</a>
             <ul class="dropdown-options center">
               <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="tag in vcms.config.tags">
-                <a ng-mousedown="vcms.execCommand(tag, $event)">{{tag}}</a>
+                <a ng-mousedown="vcms.execCommand(tag, $event)">{{getSynonym(tag)}}</a>
               </li>
             </ul>
           </li>

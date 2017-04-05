@@ -26,6 +26,7 @@ ul.dropdown {
   outline: none;
 
   > li {
+    white-space: nowrap;
     position: relative;
     outline: none;
     cursor: pointer;
