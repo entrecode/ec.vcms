@@ -8,7 +8,7 @@
     "watch": "webpack --watch -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "entrecode/",
+  "repository": "entrecode/ec.vcms",
   "authors": [
     "Michael Locher <locher@entrecode.de>",
     "Konstantin Ehlers <ehlers@entrecode.de>",
