@@ -41,7 +41,7 @@
             el.setAttribute('style', 'color: violet;');
             current.after(el);
           },
-        },{
+        }, {
           title: 'Button',
           preview: '<a class="btn">Button Label</a>',
           command: (current, e) => {
@@ -51,7 +51,7 @@
         toolbar: [
           ['tags'],
           ['bold', 'italic', 'link', 'align', 'size'],
-          ['list', 'custom'],
+          ['list', 'image', 'custom'],
           ['colors'],
           ['reset'],
           ['undo', 'redo', 'html'],
@@ -62,15 +62,15 @@
 </head>
 <body ng-app="demoapp" ng-controller="ctrl">
 <div data-container>
-  <ec-vcms json="json" config="config" class="debug">
+  <ec-vcms json="json" config="config">
     <h1 style="text-align: center;">TEST</h1>
-    <p><b style="color: red;">BOLD</b></p>
-    <p><i>ITALIC</i></p>
-    <span class="btn">BUTTON</span>
-    <img src="https://unsplash.it/200/200">
-    <p>
-      <small>tolles Bild</small>
-    </p>
+    <b style="color: red;">BOLD</b><br>
+    <i>ITALIC</i><br>
+    <span class="btn">BUTTON</span><br>
+    <img src="https://unsplash.it/200/200"><br>
+    <small>tolles Bild</small>
+    <br>
+    <p>Hier steht ein Text</p>
   </ec-vcms>
   <code style="white-space: pre-line">{{json}}</code>
 </div>
