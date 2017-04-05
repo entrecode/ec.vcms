@@ -151,20 +151,11 @@
         </div>
 
         <!--modules-->
-        <ul ng-switch-when="custom" class="vcms-modules dropdown">
-          <li tabindex="0">
-            <a data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
-              <i class="ec-icon add"></i>
-            </a>
-            <ul class="dropdown-options center">
-              <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
-                <a ng-mousedown="custom.command(vcms.currentElement, $event)">
-                  <div ng-bind-html="custom.title | unsafe"></div>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <div ng-switch-when="custom">
+          <a ng-mousedown="toggleCustomElementPop()" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
+            <i class="ec-icon add"></i>
+          </a>
+        </div>
 
         <!--colorpicker-->
         <div ng-switch-when="colors"
@@ -252,6 +243,19 @@
       </li>
     </ul>
   </nav>
+</div>
+
+show {{showCustomElementPop}}
+
+<div class="vcms-pop vcms-image" ng-if="showConfig.showCustomElementPop">
+  <ul class="dropdown-options center">
+    <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
+      <a ng-mousedown="custom.command(vcms.currentElement, $event);toggleCustomElementPop();">
+        {{custom.title}}
+        <div ng-bind-html="custom.preview | unsafe"></div>
+      </a>
+    </li>
+  </ul>
 </div>
 
 <div class="vcms-pop vcms-image" ng-if="isImgElement()">

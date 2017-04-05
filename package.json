@@ -1,19 +1,24 @@
 {
-  "name": "ec-vcms",
+  "name": "ec.vcms",
   "version": "0.0.1",
-  "description": "the wysiwyg-editor from entrecode.",
+  "description": "Lightweight Angular WYSIWYG editor based on JSON data structure. By entrecode.",
   "main": "build/ec-vcms.js",
   "scripts": {
     "build": "webpack -p",
     "watch": "webpack --watch -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "entrecode GmbH",
+  "repository": "entrecode/",
+  "authors": [
+    "Michael Locher <locher@entrecode.de>",
+    "Konstantin Ehlers <ehlers@entrecode.de>",
+    "Bernhard Ruoff <ruoff@entrecode.de>"
+  ],
   "license": "ISC",
   "dependencies": {
     "codemirror": "^5.25.0",
     "visual-cms.core": "^0.2.0",
-    "xlcss": "git+ssh://git@stash.entrecode.de:7999/bow/xlcss.git"
+    "xlcss": "^2.1.10"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
