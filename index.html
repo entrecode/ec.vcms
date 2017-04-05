@@ -13,7 +13,7 @@
         colors: ['lightgrey', 'orange', 'pink'],
         tags: ['h1', 'h2', 'p'],
         custom: [{
-          title: 'lila',
+          title: '<div style="color: violet;">LILA</div>',
           command: (current, e) => {
             const el = document.createElement('div');
             el.appendChild(document.createTextNode('LILA'));
@@ -35,7 +35,7 @@
 </head>
 <body ng-app="vcms" ng-controller="ctrl">
 <div data-container>
-  <ec-vcms json="json" colors="ctrl.config.colors">
+  <ec-vcms json="json" config="config">
     <h1 style="text-align: center;">TEST</h1>
     <p><b style="color: red;">BOLD</b></p>
     <p><i>ITALIC</i></p>

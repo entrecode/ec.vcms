@@ -4,12 +4,22 @@
 
 <div class="vcms-toolbar" ng-if="isTextElement() || vcms.htmlMode || vcms.isContainer()">
   <nav>
-    <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group">
+    <!--html mode-->
+    <ul class="vcms-toolbar-group" ng-if="vcms.htmlMode">
+      <li>
+        <a data-tooltip="Quellcode" data-tooltip-position="bottom" data-tooltip-delay
+           ng-mousedown="vcms.toggleHtml($event)">
+          <i class="ec-icon code"></i>
+        </a>
+      </li>
+    </ul>
+    <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group"
+        ng-if="!vcms.htmlMode">
 
       <li ng-repeat="menu in toolbar" ng-switch="menu">
 
         <!--Format-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="tags" class="vcms-tags dropdown">
+        <ul ng-switch-when="tags" class="vcms-tags dropdown">
           <li tabindex="0">
             <a>{{vcms.tag}}</a>
             <ul class="dropdown-options center">
@@ -21,7 +31,7 @@
         </ul>
 
         <!--Italic-->
-        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'em'}"
+        <div ng-class="{'active' : vcms.tag === 'em'}"
              ng-switch-when="italic">
           <a ng-mousedown="vcms.execCommand('italic', $event)">
             <i class="ec-icon italic"></i>
@@ -29,7 +39,7 @@
         </div>
 
         <!--Bold-->
-        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'strong'}"
+        <div ng-class="{'active' : vcms.tag === 'strong'}"
              ng-switch-when="bold">
           <a ng-mousedown="vcms.execCommand('bold', $event)">
             <i class="ec-icon bold"></i>
@@ -37,14 +47,15 @@
         </div>
 
         <!--link-->
-        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'a'}" ng-switch-when="link">
+        <div ng-class="{'active' : vcms.tag === 'a'}"
+             ng-switch-when="link">
           <a ng-mousedown="vcms.execCommand('createLink', $event)">
             <i class="ec-icon link"></i>
           </a>
         </div>
 
         <!--align-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="align" class="vcms-align dropdown">
+        <ul ng-switch-when="align" class="vcms-align dropdown">
           <li tabindex="0">
             <a>
               <i class="ec-icon"
@@ -71,7 +82,7 @@
         </ul>
 
         <!--font-size-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="size" class="vcms-font-size dropdown">
+        <ul ng-switch-when="size" class="vcms-font-size dropdown">
           <li tabindex="0">
             <a><i class="ec-icon font-size"></i></a>
             <ul class="dropdown-options center">
@@ -95,7 +106,7 @@
         </ul>
 
         <!--list-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="list" class="vcms-list-style dropdown">
+        <ul ng-switch-when="list" class="vcms-list-style dropdown">
           <li tabindex="0">
             <a><i class="ec-icon list-bullets"></i></a>
             <ul class="dropdown-options center">
@@ -114,7 +125,7 @@
         </ul>
 
         <!--blockquote-->
-        <div ng-if="!vcms.htmlMode" ng-class="{'active' : vcms.tag === 'blockquote'}"
+        <div ng-class="{'active' : vcms.tag === 'blockquote'}"
              ng-switch-when="blockquote">
           <a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"
              data-tooltip-position="bottom"
@@ -124,7 +135,7 @@
         </div>
 
         <!--image-->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="image">
+        <div ng-switch-when="image">
           <a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"
              data-tooltip-position="bottom"
              data-tooltip-delay>
@@ -133,28 +144,30 @@
         </div>
 
         <!--icons-->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="icon">
+        <div ng-switch-when="icon">
           <a data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon smiley"></i>
           </a>
         </div>
 
         <!--modules-->
-        <ul ng-if="!vcms.htmlMode" ng-switch-when="custom" class="vcms-modules dropdown">
+        <ul ng-switch-when="custom" class="vcms-modules dropdown">
           <li tabindex="0">
             <a data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
               <i class="ec-icon add"></i>
             </a>
             <ul class="dropdown-options center">
               <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
-                <a ng-mousedown="custom.command(vcms.currentElement, $event)">{{custom.title}}</a>
+                <a ng-mousedown="custom.command(vcms.currentElement, $event)">
+                  <div ng-bind-html="custom.title | unsafe"></div>
+                </a>
               </li>
             </ul>
           </li>
         </ul>
 
         <!--colorpicker-->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="colors"
+        <div ng-switch-when="colors"
              class="vcms-colorpicker">
           <a ng-style="{backgroundColor: hasAttr('color')}"
              ng-click="colorpickerActive =! colorpickerActive"
@@ -183,14 +196,14 @@
         </div>
 
         <!--presets-->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="presets">
+        <div ng-switch-when="presets">
           <a data-tooltip="Style Presets" data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon harry-potter"></i>
           </a>
         </div>
 
         <!--reset style-->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="reset">
+        <div ng-switch-when="reset">
           <a ng-mousedown="vcms.execCommand('removeFormat', $event)"
              data-tooltip="Formatierung löschen"
              data-tooltip-position="bottom"
@@ -200,7 +213,7 @@
         </div>
 
         <!--undo -->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="undo">
+        <div ng-switch-when="undo">
           <a ng-mousedown="vcms.execCommand('undo', $event)" data-tooltip="rückgängig machen"
              data-tooltip-position="bottom"
              data-tooltip-delay>
@@ -209,7 +222,7 @@
         </div>
 
         <!--redo-->
-        <div ng-if="!vcms.htmlMode" ng-switch-when="redo">
+        <div ng-switch-when="redo">
           <a ng-mousedown="vcms.execCommand('redo', $event)" data-tooltip="wiederherstellen"
              data-tooltip-position="bottom"
              data-tooltip-delay>
@@ -224,10 +237,9 @@
             <i class="ec-icon code"></i>
           </a>
         </div>
-
       </li>
     </ul>
-    <ul class="vcms-toolbar-group">
+    <ul class="vcms-toolbar-group" ng-if="!vcms.htmlMode">
       <li ng-if="vcms.tag">
         <a ng-mousedown="vcms.addElement($event)">
           <i class="ec-icon add"></i>
