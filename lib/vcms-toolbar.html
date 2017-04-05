@@ -148,7 +148,8 @@
 
         <!--modules-->
         <div ng-switch-when="custom">
-          <a ng-mousedown="toggleCustomElementPop()" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
+          <a ng-mousedown="toggleCustomElementPop()" data-tooltip="Weitere Elemente"
+             data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon add"></i>
           </a>
         </div>
@@ -238,8 +239,6 @@
   </nav>
 </div>
 
-show {{showCustomElementPop}}
-
 <div class="vcms-pop vcms-image" ng-if="showConfig.showCustomElementPop">
   <ul class="dropdown-options center">
     <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
@@ -252,8 +251,8 @@ show {{showCustomElementPop}}
 </div>
 
 <div class="vcms-pop vcms-image" ng-if="isImgElement()">
-  <ec-tabs class="ec-tabs-default">
-    <ec-tab data-title="Source">
+  <div class="ec-tabs-default">
+    <div data-title="Source">
       <label>
         Externe Url
         <input type="text" ng-model="vcms.src">
@@ -265,9 +264,9 @@ show {{showCustomElementPop}}
         <input type="checkbox" checked="checked">
         automatische Größe
       </label>
-    </ec-tab>
+    </div>
 
-    <ec-tab data-title="Style">
+    <div data-title="Style">
       <div data-row>
         <div data-col="6sm">
           <img ng-src="{{vcms.src}}" class="img-style-light">
@@ -276,11 +275,11 @@ show {{showCustomElementPop}}
           <img ng-src="{{vcms.src}}" class="img-style-light">
         </div>
       </div>
-    </ec-tab>
-    <ec-tab data-title="Custom">
+    </div>
+    <div data-title="Custom">
       Custom
-    </ec-tab>
-  </ec-tabs>
+    </div>
+  </div>
 
   <footer class="vcms-pop-footer">
     <nav>
