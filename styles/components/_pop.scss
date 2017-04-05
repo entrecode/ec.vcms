@@ -1,0 +1,15 @@
+%pop {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50vw;
+  max-width: 480px;
+  min-width: 240px;
+  @include transform(translate3d(-50%, -50%, 0));
+  //background-color: getColor(base, background);
+  @extend %overlayshadow;
+  padding: rem(8);
+  @include border-radius(rem(16));
+  z-index: 9999;
+  min-height: rem(48);
+}
