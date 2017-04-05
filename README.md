@@ -9,6 +9,12 @@ This project contains a lightweight WYSIWYG editor based on JSON data structure 
 
 ## Getting started
 
+Install the package:
+
+```sh
+npm i ec.vcms --save
+```
+
 Add the `ec.vcms` module to your angular app:
 
 ```js
