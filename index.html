@@ -48,10 +48,18 @@
             current.after(angular.element('<a class="btn">Button Label</a>')[0]);
           },
         }],
+        presets: [{
+          title: 'Embossed',
+          styles: {
+            textShadow: '-1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8)',
+            color: 'red',
+            fontSize: '2rem',
+          },
+        }],
         toolbar: [
           ['tags'],
           ['bold', 'italic', 'link', 'align', 'size'],
-          ['list', 'image', 'custom'],
+          ['list', 'image', 'custom', 'presets'],
           ['colors'],
           ['reset'],
           ['undo', 'redo', 'html'],
@@ -66,11 +74,11 @@
     <h1 style="text-align: center;">TEST</h1>
     <b style="color: red;">BOLD</b><br>
     <i>ITALIC</i><br>
-    <span class="btn">BUTTON</span><br>
-    <img src="https://unsplash.it/200/200"><br>
-    <small>tolles Bild</small>
-    <br>
-    <p>Hier steht ein Text</p>
+    <a class="btn" href="https://entrecode.de">BUTTON</a>
+    <img src="https://unsplash.it/200/200">
+    <p>
+      <small>tolles Bild</small>
+    </p>
   </ec-vcms>
   <code style="white-space: pre-line">{{json}}</code>
 </div>
