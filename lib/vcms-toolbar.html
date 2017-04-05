@@ -31,24 +31,21 @@
         </ul>
 
         <!--Italic-->
-        <div ng-class="{'active' : vcms.tag === 'em'}"
-             ng-switch-when="italic">
+        <div ng-class="{'active' : vcms.tag === 'em'}" ng-switch-when="italic">
           <a ng-mousedown="vcms.execCommand('italic', $event)">
             <i class="ec-icon italic"></i>
           </a>
         </div>
 
         <!--Bold-->
-        <div ng-class="{'active' : vcms.tag === 'strong'}"
-             ng-switch-when="bold">
+        <div ng-class="{'active' : vcms.tag === 'strong'}" ng-switch-when="bold">
           <a ng-mousedown="vcms.execCommand('bold', $event)">
             <i class="ec-icon bold"></i>
           </a>
         </div>
 
         <!--link-->
-        <div ng-class="{'active' : vcms.tag === 'a'}"
-             ng-switch-when="link">
+        <div ng-class="{'active' : vcms.tag === 'a'}" ng-switch-when="link">
           <a ng-mousedown="vcms.execCommand('createLink', $event)">
             <i class="ec-icon link"></i>
           </a>
@@ -108,7 +105,9 @@
         <!--list-->
         <ul ng-switch-when="list" class="vcms-list-style dropdown">
           <li tabindex="0">
-            <a><i class="ec-icon list-bullets"></i></a>
+            <a>
+              <i class="ec-icon list-bullets"></i>
+            </a>
             <ul class="dropdown-options center">
               <li ng-class="{'active' : hasChild('ul')}">
                 <a ng-mousedown="vcms.execCommand('insertUnorderedList', $event)">
@@ -125,11 +124,9 @@
         </ul>
 
         <!--blockquote-->
-        <div ng-class="{'active' : vcms.tag === 'blockquote'}"
-             ng-switch-when="blockquote">
+        <div ng-class="{'active' : vcms.tag === 'blockquote'}" ng-switch-when="blockquote">
           <a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"
-             data-tooltip-position="bottom"
-             data-tooltip-delay>
+             data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon quote-closing"></i>
           </a>
         </div>
@@ -137,8 +134,7 @@
         <!--image-->
         <div ng-switch-when="image">
           <a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"
-             data-tooltip-position="bottom"
-             data-tooltip-delay>
+             data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon img"></i>
           </a>
         </div>
@@ -205,9 +201,7 @@
         <!--reset style-->
         <div ng-switch-when="reset">
           <a ng-mousedown="vcms.execCommand('removeFormat', $event)"
-             data-tooltip="Formatierung löschen"
-             data-tooltip-position="bottom"
-             data-tooltip-delay>
+             data-tooltip="Formatierung löschen" data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon format-clear"></i>
           </a>
         </div>
@@ -215,8 +209,7 @@
         <!--undo -->
         <div ng-switch-when="undo">
           <a ng-mousedown="vcms.execCommand('undo', $event)" data-tooltip="rückgängig machen"
-             data-tooltip-position="bottom"
-             data-tooltip-delay>
+             data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon undo"></i>
           </a>
         </div>
@@ -224,8 +217,7 @@
         <!--redo-->
         <div ng-switch-when="redo">
           <a ng-mousedown="vcms.execCommand('redo', $event)" data-tooltip="wiederherstellen"
-             data-tooltip-position="bottom"
-             data-tooltip-delay>
+             data-tooltip-position="bottom" data-tooltip-delay>
             <i class="ec-icon redo"></i>
           </a>
         </div>
@@ -239,6 +231,7 @@
         </div>
       </li>
     </ul>
+
     <ul class="vcms-toolbar-group" ng-if="!vcms.htmlMode">
       <li ng-if="vcms.tag">
         <a ng-mousedown="vcms.addElement($event)">
