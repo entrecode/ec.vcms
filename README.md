@@ -34,13 +34,13 @@ You can simply wrap the content you want with the `ec-vcms` component since tran
 
 ```html
 <ec-vcms json="mydata">
-	<h1 style="text-align: center;">TEST</h1>
-	<p><b style="color: red;">BOLD</b></p>
-	<p><i>ITALIC</i></p>
-	<img src="https://unsplash.it/200/200">
-	<p>
-		<small>tolles Bild</small>
-	</p>
+<h1 style="text-align: center;">TEST</h1>
+<p><b style="color: red;">BOLD</b></p>
+<p><i>ITALIC</i></p>
+<img src="https://unsplash.it/200/200">
+<p>
+<small>tolles Bild</small>
+</p>
 </ec-vcms>
 ```
 
@@ -54,40 +54,40 @@ You can pass your individual config to the ec-vcms directive via the config attr
 
 The config object looks like:
 
-```json
+```js
 {
-        colors: ['#000000', 'orange', '#FFF', 'rgba(231,212,231,.4)'],
-        tags: ['h1', 'h2', 'p'],
-        synonyms: {
-          h1: 'Headline 1',
-          h2: 'Headline 2',
-          p: 'Absatz',
-        },
-        custom: [{
-          title: 'Violet',
-          preview: '<div style="color: violet;">Violet</div>',
-          command: (current, e) => {
-            const el = document.createElement('div');
-            el.appendChild(document.createTextNode('Violet'));
-            el.setAttribute('style', 'color: violet;');
-            current.after(el);
-          },
-        },{
-          title: 'Button',
-          preview: '<a class="btn">Button Label</a>',
-          command: (current, e) => {
-            current.after(angular.element('<a class="btn">Button Label</a>')[0]);
-          },
-        }],
-        toolbar: [
-          ['tags'],
-          ['bold', 'italic', 'link', 'align', 'size'],
-          ['list', 'custom'],
-          ['colors'],
-          ['reset'],
-          ['undo', 'redo', 'html'],
-        ],
-      }
+colors: ['#000000', 'orange', '#FFF', 'rgba(231,212,231,.4)'],
+tags: ['h1', 'h2', 'p'],
+synonyms: {
+h1: 'Headline 1',
+h2: 'Headline 2',
+p: 'Absatz',
+},
+custom: [{
+title: 'Violet',
+preview: '<div style="color: violet;">Violet</div>',
+command: (current, e) => {
+const el = document.createElement('div');
+el.appendChild(document.createTextNode('Violet'));
+el.setAttribute('style', 'color: violet;');
+current.after(el);
+},
+},{
+title: 'Button',
+preview: '<a class="btn">Button Label</a>',
+command: (current, e) => {
+current.after(angular.element('<a class="btn">Button Label</a>')[0]);
+},
+}],
+toolbar: [
+['tags'],
+['bold', 'italic', 'link', 'align', 'size'],
+['list', 'custom'],
+['colors'],
+['reset'],
+['undo', 'redo', 'html'],
+],
+}
 ```
 
 The following config parameters are supported:
@@ -124,36 +124,36 @@ Future toolbar elements:
 
 The default config is:
 
-```json
+```js
 {
-	colors: ['#EE4266', '#2A1E5C', '#0A0F0D', '#C4CBCA', '#3CBBB1'],
-	tags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
-	synonyms: {
-	  h1: 'Headline 1',
-	  h2: 'Headline 2',
-	  h3: 'Headline 3',
-	  h4: 'Headline 4',
-	  h5: 'Headline 5',
-	  h6: 'Headline 6',
-	  p: 'Absatz',
-	  a: 'Link',
-	  ol: 'Liste',
-	  ul: 'Liste',
-	  div: 'Block',
-	  span: 'Inline',
-	  strong: 'Fett',
-	  em: 'Kursiv',
-	  img: 'Bild',
-	},
-	toolbar: [
-	  ['tags'],
-	  ['italic', 'bold', 'link', 'align', 'size'],
-	  ['list', 'image', 'custom'],
-	  ['colors'],
-	  ['presets'],
-	  ['reset'],
-	  ['undo', 'redo', 'html'],
-	],
+colors: ['#EE4266', '#2A1E5C', '#0A0F0D', '#C4CBCA', '#3CBBB1'],
+tags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
+synonyms: {
+h1: 'Headline 1',
+h2: 'Headline 2',
+h3: 'Headline 3',
+h4: 'Headline 4',
+h5: 'Headline 5',
+h6: 'Headline 6',
+p: 'Absatz',
+a: 'Link',
+ol: 'Liste',
+ul: 'Liste',
+div: 'Block',
+span: 'Inline',
+strong: 'Fett',
+em: 'Kursiv',
+img: 'Bild',
+},
+toolbar: [
+['tags'],
+['italic', 'bold', 'link', 'align', 'size'],
+['list', 'image', 'custom'],
+['colors'],
+['presets'],
+['reset'],
+['undo', 'redo', 'html'],
+],
 }
 ```
 
@@ -165,11 +165,11 @@ A custom command can look like:
 
 ```js
 {
-  title: 'Button',
-  preview: '<a class="btn">Button Label</a>',
-  command: (elem, event) => {
-    elem.after(angular.element('<a class="btn">Button Label</a>')[0]);
-  },
+title: 'Button',
+preview: '<a class="btn">Button Label</a>',
+command: (elem, event) => {
+elem.after(angular.element('<a class="btn">Button Label</a>')[0]);
+},
 }
 ```
 Parameters of a custom command object:
