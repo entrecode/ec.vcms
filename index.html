@@ -48,10 +48,18 @@
             current.after(angular.element('<a class="btn">Button Label</a>')[0]);
           },
         }],
+        presets: [{
+          title: 'Embossed',
+          styles: {
+            textShadow: '-1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8)',
+            color: 'red',
+            fontSize: '2rem',
+          },
+        }],
         toolbar: [
           ['tags'],
           ['bold', 'italic', 'link', 'align', 'size'],
-          ['list', 'custom'],
+          ['list', 'custom', 'presets'],
           ['colors'],
           ['reset'],
           ['undo', 'redo', 'html'],
@@ -62,7 +70,7 @@
 </head>
 <body ng-app="demoapp" ng-controller="ctrl">
 <div data-container>
-  <ec-vcms json="json" config="config" class="debug">
+  <ec-vcms json="json" config="config">
     <h1 style="text-align: center;">TEST</h1>
     <p><b style="color: red;">BOLD</b></p>
     <p><i>ITALIC</i></p>

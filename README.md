@@ -186,3 +186,20 @@ Parameters of the command function:
 
 
 ### Style Presets
+
+Style presets can be passed via the `presets` parameter of the config object.
+
+A style preset looks like:
+
+```js
+{
+  title: 'Embossed',
+  styles: {
+    textShadow: '-1px -1px 0 rgba(255,255,255,0.3), 1px 1px 0 rgba(0,0,0,0.8)'
+  },
+}
+```
+Parameters of a custom command object:
+
+* `title` (required) The title of the preset style
+* `styles` (required) key, value pairs of css styles - key must be camelCased

@@ -184,7 +184,7 @@
 
         <!--presets-->
         <div ng-switch-when="presets">
-          <a data-tooltip="Style Presets" data-tooltip-position="bottom" data-tooltip-delay>
+          <a ng-mousedown="toggleStylePresetsPop()" data-tooltip="Style Presets" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon harry-potter"></i>
           </a>
         </div>
@@ -238,14 +238,22 @@
   </nav>
 </div>
 
-show {{showCustomElementPop}}
-
-<div class="vcms-pop vcms-image" ng-if="showConfig.showCustomElementPop">
+<div class="vcms-pop vcms-customs" ng-if="showConfig.showCustomElementPop">
   <ul class="dropdown-options center">
     <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
       <a ng-mousedown="custom.command(vcms.currentElement, $event);toggleCustomElementPop();">
         {{custom.title}}
         <div ng-bind-html="custom.preview | unsafe"></div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="vcms-pop vcms-presets" ng-if="showConfig.showStylePresetsPop">
+  <ul class="dropdown-options center">
+    <li ng-repeat="preset in vcms.config.presets">
+      <a ng-mousedown="vcms.applyStyle(preset.styles);toggleStylePresetsPop();">
+        <span style="{{vcms.jsonToCss(preset.styles)}}">{{preset.title}}</span>
       </a>
     </li>
   </ul>
