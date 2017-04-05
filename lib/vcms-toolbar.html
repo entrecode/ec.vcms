@@ -46,7 +46,7 @@
 
         <!--link-->
         <div ng-class="{'active' : vcms.tag === 'a'}" ng-switch-when="link">
-          <a ng-mousedown="vcms.execCommand('createLink', $event)">
+          <a ng-mousedown="togglePop('showLinkPop')">
             <i class="ec-icon link"></i>
           </a>
         </div>
@@ -148,7 +148,7 @@
 
         <!--modules-->
         <div ng-switch-when="custom">
-          <a ng-mousedown="toggleCustomElementPop()" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
+          <a ng-mousedown="togglePop('showCustomElementPop')" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon add"></i>
           </a>
         </div>
@@ -184,7 +184,7 @@
 
         <!--presets-->
         <div ng-switch-when="presets">
-          <a ng-mousedown="toggleStylePresetsPop()" data-tooltip="Style Presets" data-tooltip-position="top" data-tooltip-delay>
+          <a ng-mousedown="togglePop('showStylePresetsPop')" data-tooltip="Style Presets" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon harry-potter"></i>
           </a>
         </div>
@@ -241,7 +241,7 @@
 <div class="vcms-pop vcms-customs" ng-if="showConfig.showCustomElementPop">
   <ul class="dropdown-options center">
     <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
-      <a ng-mousedown="custom.command(vcms.currentElement, $event);toggleCustomElementPop();">
+      <a ng-mousedown="custom.command(vcms.currentElement, $event);togglePop('showCustomElementPop');">
         {{custom.title}}
         <div ng-bind-html="custom.preview | unsafe"></div>
       </a>
@@ -257,6 +257,22 @@
       </a>
     </li>
   </ul>
+</div>
+
+<div class="vcms-pop vcms-link" ng-if="showConfig.showLinkPop">
+  <form name="LinkForm" novalidate ng-submit="LinkForm.$valid && vcms.execCommand('createLink', $event, newLinkData) && toggleLinkPop()">
+    <label>
+      URL {{hasAttr('href')}}
+      <input type="url" ng-model="newLinkData.url" ng-init="newLinkData.url = vcms.currentElement[0].getAttribute('href'); newLinkData.blank = (vcms.currentElement[0].getAttribute('target') === '_blank') ? true : false;" ng-required>
+    </label>
+    <label>
+      New Window
+      <input type="checkbox" ng-model="newLinkData.blank">
+    </label>
+    <p>
+      <button type="submit">Save</button>
+    </p>
+  </form>
 </div>
 
 <div class="vcms-pop vcms-image" ng-if="isImgElement()">
