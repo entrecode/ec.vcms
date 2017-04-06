@@ -2,7 +2,7 @@
   Element auswählen
 </div>
 
-<div class="vcms-toolbar" ng-if="isTextElement() || vcms.htmlMode || vcms.isContainer()">
+<div class="vcms-toolbar">
   <nav>
     <!--html mode-->
     <ul class="vcms-toolbar-group" ng-if="vcms.htmlMode">
@@ -14,7 +14,7 @@
       </li>
     </ul>
     <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group"
-        ng-if="!vcms.htmlMode">
+        ng-if="!vcms.htmlMode && (isTextElement() || vcms.htmlMode || vcms.isContainer())">
 
       <li ng-repeat="menu in toolbar" ng-switch="menu">
 
@@ -229,7 +229,7 @@
           <i class="ec-icon add"></i>
         </a>
       </li>
-      <li>
+      <li ng-if="isTextElement() || isContainer()">
         <a ng-mousedown="vcms.deleteElement($event)">
           <i class="ec-icon trash"></i>
         </a>
