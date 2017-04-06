@@ -1,7 +1,4 @@
-<div class="vcms-toolbar-placeholder" ng-hide="isTextElement() || isImgElement()">
-  Element auswählen
-</div>
-<div class="vcms-toolbar" ng-if="isTextElement() || vcms.htmlMode || vcms.isContainer()">
+<div class="vcms-toolbar">
   <nav>
     <!--html mode-->
     <ul class="vcms-toolbar-group" ng-if="vcms.htmlMode">
@@ -13,7 +10,7 @@
       </li>
     </ul>
     <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group"
-        ng-if="!vcms.htmlMode">
+        ng-if="!vcms.htmlMode && (isTextElement() || vcms.htmlMode || vcms.isContainer())">
 
       <li ng-repeat="menu in toolbar" ng-switch="menu">
 
@@ -146,7 +143,7 @@
         </div>
 
         <!--modules-->
-        <div ng-switch-when="custom">
+        <div ng-switch-when="custom" ng-if="vcms.config.custom.length">
           <a ng-mousedown="togglePop('showCustomElementPop')" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon add"></i>
           </a>
@@ -182,7 +179,7 @@
         </div>
 
         <!--presets-->
-        <div ng-switch-when="presets">
+        <div ng-switch-when="presets" ng-if="vcms.config.presets.length">
           <a ng-mousedown="togglePop('showStylePresetsPop')" data-tooltip="Style Presets" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon harry-potter"></i>
           </a>
@@ -228,7 +225,7 @@
           <i class="ec-icon add"></i>
         </a>
       </li>
-      <li>
+      <li ng-if="isTextElement() || isContainer()">
         <a ng-mousedown="vcms.deleteElement($event)">
           <i class="ec-icon trash"></i>
         </a>
