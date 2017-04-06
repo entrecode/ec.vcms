@@ -147,7 +147,7 @@
         </div>
 
         <!--modules-->
-        <div ng-switch-when="custom">
+        <div ng-switch-when="custom" ng-if="vcms.config.custom.length">
           <a ng-mousedown="togglePop('showCustomElementPop')" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon add"></i>
           </a>
@@ -183,7 +183,7 @@
         </div>
 
         <!--presets-->
-        <div ng-switch-when="presets">
+        <div ng-switch-when="presets" ng-if="vcms.config.presets.length">
           <a ng-mousedown="togglePop('showStylePresetsPop')" data-tooltip="Style Presets" data-tooltip-position="top" data-tooltip-delay>
             <i class="ec-icon harry-potter"></i>
           </a>
