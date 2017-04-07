@@ -90,7 +90,7 @@
                 </a>
               </li>
               <li ng-class="{'active' : vcms.tag === 'small'}">
-                <a ng-mousedown="vcms.toggleClass('text-small', ['text-big']);">
+                <a ng-mousedown="vcms.execCommand('decreaseFontSize', $event); vcms.toggleClass('text-small', ['text-big']);">
                   klein
                 </a>
               </li>
