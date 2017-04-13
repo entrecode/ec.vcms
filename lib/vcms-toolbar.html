@@ -10,7 +10,7 @@
       </li>
     </ul>
     <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group"
-        ng-if="!vcms.htmlMode && (isTextElement() || vcms.htmlMode || vcms.isContainer())">
+        ng-if="!vcms.htmlMode && isTextElement()">
 
       <li ng-repeat="menu in toolbar" ng-switch="menu">
 
