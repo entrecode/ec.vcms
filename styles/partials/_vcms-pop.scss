@@ -1,6 +1,9 @@
 .vcms-pop {
+  @extend %pop;
   padding-bottom: 0;
-  max-width: rem(400);
+  max-width: 320px;
+  font-size: 14px;
+  font-family: sans-serif;
 
   .vcms-pop-footer {
     @include transform(translateY(50%));

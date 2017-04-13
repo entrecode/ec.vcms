@@ -1,11 +1,9 @@
 //
 // @font-face
 // -------------
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
-@import url('https://icons.cdn.entrecode.de/ec-icons-1.0.9.css');
+@import url('https://icons.cdn.entrecode.de/ec-icons-1.1.12.css');
 
-$bodyFont: 'PT Sans', sans-serif;
-$headerFont: 'PT Sans', sans-serif;
+$bodyFont: sans-serif;
 
 //
 // Color Palette
@@ -27,44 +25,4 @@ $highlight: #FFFF8D;
   $setLight: $background;
 }
 
-// radius of input-elements
-$input-radius: 4 !default;
-
-// radius of buttons
-// if $btn-round === false
-$btn-radius: 4 !default;
-
-// if is btn is round
-$btn-round: false;
-
-// min width for wide buttons
-$btn-wide-width: 160px;
-
-// radius of dropdown-elements
-$dropdown-radius: 4 !default;
-
-// headings variables
-$base-size: 16;
-
-$headings-weight: bold;
-
-$h1-size: 48;
-$h1-height: 56;
-
-$h2-size: 40;
-$h2-height: 48;
-
-$h3-size: 32;
-$h3-height: 40;
-
-$h4-size: 24;
-$h4-height: 32;
-
-$h5-size: 20;
-$h5-height: 28;
-
-$h6-size: 16;
-$h6-height: 24;
-
-// Breakpoint for responsive navigation
-$bpNav: $bpLg;
+$dropdown-radius: 4;

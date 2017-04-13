@@ -6,10 +6,10 @@
   max-width: 480px;
   min-width: 240px;
   @include transform(translate3d(-50%, -50%, 0));
-  //background-color: getColor(base, background);
-  @extend %overlayshadow;
-  padding: rem(8);
-  @include border-radius(rem(16));
+  @extend %shadow%overlay;
+  padding: 8px;
+  @include border-radius($dropdown-radius);
   z-index: 9999;
-  min-height: rem(48);
+  background-color: getColor(base, background);
+  min-height: 48px;
 }

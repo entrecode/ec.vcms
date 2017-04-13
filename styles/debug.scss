@@ -1,0 +1,174 @@
+.debug {
+
+  .vcms-content {
+    h1, h2, h3, h4, h5, h6, p, blockquote, cite, a, ol, ul, div, span, strong, em, img, small {
+      &:after, &:before {
+        font-family: monospace;
+        color: black;
+        font-size: 12px;
+      }
+    }
+
+    h1 {
+      &:before {
+        content: '<h1>';
+      }
+      &:after {
+        content: '</h1>';
+      }
+    }
+
+    h2 {
+      &:before {
+        content: '<h2>';
+      }
+      &:after {
+        content: '</h2>';
+      }
+    }
+
+    h3 {
+      &:before {
+        content: '<h3>';
+      }
+      &:after {
+        content: '</h3>';
+      }
+    }
+
+    h4 {
+      &:before {
+        content: '<h4>';
+      }
+      &:after {
+        content: '</h4>';
+      }
+    }
+
+    h5 {
+      &:before {
+        content: '<h5>';
+      }
+      &:after {
+        content: '</h5>';
+      }
+    }
+
+    h6 {
+      &:before {
+        content: '<h6>';
+      }
+      &:after {
+        content: '</h6>';
+      }
+    }
+
+    p {
+      &:before {
+        content: '<p>';
+      }
+      &:after {
+        content: '</p>';
+      }
+    }
+
+    blockquote {
+      &:before {
+        content: '<blockquote>';
+      }
+      &:after {
+        content: '</blockquote>';
+      }
+    }
+
+    cite {
+      &:before {
+        content: '<cite>';
+      }
+      &:after {
+        content: '</cite>';
+      }
+    }
+
+    a {
+      &:before {
+        content: '<a>';
+      }
+      &:after {
+        content: '</a>';
+      }
+    }
+
+    ol {
+      &:before {
+        content: '<ol>';
+      }
+      &:after {
+        content: '</ol>';
+      }
+    }
+
+    ul {
+      &:before {
+        content: '<ul>';
+      }
+      &:after {
+        content: '</ul>';
+      }
+    }
+
+    div {
+      &:before {
+        content: '<div>';
+      }
+      &:after {
+        content: '</div>';
+      }
+    }
+
+    span {
+      &:before {
+        content: '<span>';
+      }
+      &:after {
+        content: '</span>';
+      }
+    }
+
+    strong {
+      &:before {
+        content: '<strong>';
+      }
+      &:after {
+        content: '</strong>';
+      }
+    }
+
+    em {
+      &:before {
+        content: '<em>';
+      }
+      &:after {
+        content: '</em>';
+      }
+    }
+
+    img {
+      &:before {
+        content: '<img>';
+      }
+      &:after {
+        content: '</img>';
+      }
+    }
+
+    small {
+      &:before {
+        content: '<small>';
+      }
+      &:after {
+        content: '</small>';
+      }
+    }
+  }
+}

@@ -1,9 +1,12 @@
 .vcms-content {
   display: block;
   border: 1px solid getColor(base, border);
-  @include border-radius(rem(2));
-  @include box-shadow(inset 0 0 4px rgba(black,.1));
-  padding: rem(8);
+  outline: none;
+  @include border-radius(2px);
+  @include box-shadow(inset 0 0 4px rgba(black, .1));
+  padding: 8px;
+  width: 100%;
+  height: 100%;
 
   [contenteditable] {
     outline: none;

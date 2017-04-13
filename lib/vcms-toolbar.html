@@ -5,7 +5,7 @@
       <li>
         <a data-tooltip="Quellcode" data-tooltip-position="bottom" data-tooltip-delay
            ng-mousedown="vcms.toggleHtml($event)">
-          <i class="ec-icon code"></i>
+          <span class="ec-icon code"></span>
         </a>
       </li>
     </ul>
@@ -15,10 +15,10 @@
       <li ng-repeat="menu in toolbar" ng-switch="menu">
 
         <!--Format-->
-        <ul ng-switch-when="tags" class="vcms-tags dropdown">
+        <ul ng-switch-when="tags" class="vcms-tags vcms-dropdown">
           <li tabindex="0">
             <a>{{getSynonym()}}</a>
-            <ul class="dropdown-options center">
+            <ul class="vcms-dropdown-options center">
               <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="tag in vcms.config.tags">
                 <a ng-mousedown="vcms.execCommand(tag, $event)">{{getSynonym(tag)}}</a>
               </li>
@@ -29,45 +29,45 @@
         <!--Italic-->
         <div ng-class="{'active' : vcms.tag === 'em'}" ng-switch-when="italic">
           <a ng-mousedown="vcms.execCommand('italic', $event)">
-            <i class="ec-icon italic"></i>
+            <span class="ec-icon italic"></span>
           </a>
         </div>
 
         <!--Bold-->
         <div ng-class="{'active' : vcms.tag === 'strong'}" ng-switch-when="bold">
           <a ng-mousedown="vcms.execCommand('bold', $event)">
-            <i class="ec-icon bold"></i>
+            <span class="ec-icon bold"></span>
           </a>
         </div>
 
         <!--link-->
         <div ng-class="{'active' : vcms.tag === 'a'}" ng-switch-when="link">
           <a ng-mousedown="togglePop('showLinkPop')">
-            <i class="ec-icon link"></i>
+            <span class="ec-icon link"></span>
           </a>
         </div>
 
         <!--align-->
-        <ul ng-switch-when="align" class="vcms-align dropdown">
+        <ul ng-switch-when="align" class="vcms-align vcms-dropdown">
           <li tabindex="0">
             <a>
-              <i class="ec-icon"
-                 ng-class="{'align-left': hasAttr('text-align', 'left') || !hasAttr('text-align'), 'align-center': hasAttr('text-align', 'center'), 'align-right': hasAttr('text-align', 'right')}"></i>
+              <span class="ec-icon"
+                    ng-class="{'align-left': hasAttr('text-align', 'left') || !hasAttr('text-align'), 'align-center': hasAttr('text-align', 'center'), 'align-right': hasAttr('text-align', 'right')}"></span>
             </a>
-            <ul class="dropdown-options center">
+            <ul class="vcms-dropdown-options center">
               <li ng-class="{'active' : hasAttr('text-align', 'left') || !hasAttr('text-align')}">
                 <a ng-mousedown="vcms.execCommand('justifyLeft', $event)">
-                  <i class="ec-icon align-left"></i>
+                  <span class="ec-icon align-left"></span>
                 </a>
               </li>
               <li ng-class="{'active' : hasAttr('text-align', 'center')}">
                 <a ng-mousedown="vcms.execCommand('justifyCenter', $event)">
-                  <i class="ec-icon align-center"></i>
+                  <span class="ec-icon align-center"></span>
                 </a>
               </li>
               <li ng-class="{'active' : hasAttr('text-align', 'right')}">
                 <a ng-mousedown="vcms.execCommand('justifyRight', $event)">
-                  <i class="ec-icon align-right"></i>
+                  <span class="ec-icon align-right"></span>
                 </a>
               </li>
             </ul>
@@ -75,10 +75,10 @@
         </ul>
 
         <!--font-size-->
-        <ul ng-switch-when="size" class="vcms-font-size dropdown">
+        <ul ng-switch-when="size" class="vcms-font-size vcms-dropdown">
           <li tabindex="0">
-            <a><i class="ec-icon font-size"></i></a>
-            <ul class="dropdown-options center">
+            <a><span class="ec-icon font-size"></span></a>
+            <ul class="vcms-dropdown-options center">
               <li ng-class="{'active' : hasClass('text-big')}">
                 <a ng-mousedown="vcms.toggleClass('text-big', ['text-small'])">
                   groß
@@ -99,20 +99,20 @@
         </ul>
 
         <!--list-->
-        <ul ng-switch-when="list" class="vcms-list-style dropdown">
+        <ul ng-switch-when="list" class="vcms-list-style vcms-dropdown">
           <li tabindex="0">
             <a>
-              <i class="ec-icon list-bullets"></i>
+              <span class="ec-icon list-bullets"></span>
             </a>
-            <ul class="dropdown-options center">
+            <ul class="vcms-dropdown-options center">
               <li ng-class="{'active' : hasChild('ul')}">
                 <a ng-mousedown="vcms.execCommand('insertUnorderedList', $event)">
-                  <i class="ec-icon list-bullets"></i>
+                  <span class="ec-icon list-bullets"></span>
                 </a>
               </li>
               <li ng-class="{'active' : hasChild('ol')}">
                 <a ng-mousedown="vcms.execCommand('insertOrderedList', $event)">
-                  <i class="ec-icon list-number"></i>
+                  <span class="ec-icon list-number"></span>
                 </a>
               </li>
             </ul>
@@ -122,30 +122,31 @@
         <!--blockquote-->
         <div ng-class="{'active' : vcms.tag === 'blockquote'}" ng-switch-when="blockquote">
           <a ng-mousedown="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"
-             data-tooltip-position="bottom" data-tooltip-delay>
-            <i class="ec-icon quote-closing"></i>
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon quote-closing"></span>
           </a>
         </div>
 
         <!--image-->
         <div ng-switch-when="image">
           <a ng-mousedown="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"
-             data-tooltip-position="bottom" data-tooltip-delay>
-            <i class="ec-icon img"></i>
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon img"></span>
           </a>
         </div>
 
         <!--icons-->
         <div ng-switch-when="icon">
-          <a data-tooltip="Icon" data-tooltip-position="bottom" data-tooltip-delay>
-            <i class="ec-icon smiley"></i>
+          <a data-tooltip="Icon" data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon smiley"></span>
           </a>
         </div>
 
         <!--modules-->
         <div ng-switch-when="custom" ng-if="vcms.config.custom.length">
-          <a ng-mousedown="togglePop('showCustomElementPop')" data-tooltip="Weitere Elemente" data-tooltip-position="top" data-tooltip-delay>
-            <i class="ec-icon add"></i>
+          <a ng-mousedown="togglePop('showCustomElementPop')" data-tooltip="Weitere Elemente"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon add"></span>
           </a>
         </div>
 
@@ -180,40 +181,41 @@
 
         <!--presets-->
         <div ng-switch-when="presets" ng-if="vcms.config.presets.length">
-          <a ng-mousedown="togglePop('showStylePresetsPop')" data-tooltip="Style Presets" data-tooltip-position="top" data-tooltip-delay>
-            <i class="ec-icon harry-potter"></i>
+          <a ng-mousedown="togglePop('showStylePresetsPop')" data-tooltip="Style Presets"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon harry-potter"></span>
           </a>
         </div>
 
         <!--reset style-->
         <div ng-switch-when="reset">
           <a ng-mousedown="vcms.execCommand('removeFormat', $event)"
-             data-tooltip="Formatierung löschen" data-tooltip-position="bottom" data-tooltip-delay>
-            <i class="ec-icon format-clear"></i>
+             data-tooltip="Formatierung löschen" data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon format-clear"></span>
           </a>
         </div>
 
         <!--undo -->
         <div ng-switch-when="undo">
           <a ng-mousedown="vcms.execCommand('undo', $event)" data-tooltip="rückgängig machen"
-             data-tooltip-position="bottom" data-tooltip-delay>
-            <i class="ec-icon undo"></i>
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon undo"></span>
           </a>
         </div>
 
         <!--redo-->
         <div ng-switch-when="redo">
           <a ng-mousedown="vcms.execCommand('redo', $event)" data-tooltip="wiederherstellen"
-             data-tooltip-position="bottom" data-tooltip-delay>
-            <i class="ec-icon redo"></i>
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon redo"></span>
           </a>
         </div>
 
         <!--html mode-->
         <div ng-switch-when="html">
-          <a data-tooltip="Quellcode" data-tooltip-position="bottom" data-tooltip-delay
+          <a data-tooltip="Quellcode" data-tooltip-position="top" data-tooltip-delay
              ng-mousedown="vcms.toggleHtml($event)">
-            <i class="ec-icon code"></i>
+            <span class="ec-icon code"></span>
           </a>
         </div>
       </li>
@@ -222,12 +224,12 @@
     <ul class="vcms-toolbar-group" ng-if="!vcms.htmlMode">
       <li>
         <a ng-mousedown="vcms.addElement($event)">
-          <i class="ec-icon add"></i>
+          <span class="ec-icon add"></span>
         </a>
       </li>
       <li ng-if="isTextElement() || isContainer()">
         <a ng-mousedown="vcms.deleteElement($event)">
-          <i class="ec-icon trash"></i>
+          <span class="ec-icon trash"></span>
         </a>
       </li>
     </ul>
@@ -235,7 +237,7 @@
 </div>
 
 <div class="vcms-pop vcms-customs" ng-if="showConfig.showCustomElementPop">
-  <ul class="dropdown-options center">
+  <ul>
     <li ng-class="{'active' : vcms.tag === tag}" ng-repeat="custom in vcms.config.custom">
       <a ng-mousedown="custom.command(vcms.currentElement, $event);togglePop('showCustomElementPop');">
         {{custom.title}}
@@ -246,7 +248,7 @@
 </div>
 
 <div class="vcms-pop vcms-presets" ng-if="showConfig.showStylePresetsPop">
-  <ul class="dropdown-options center">
+  <ul>
     <li ng-repeat="preset in vcms.config.presets">
       <a ng-mousedown="vcms.applyStyle(preset.styles);toggleStylePresetsPop();">
         <span style="{{vcms.jsonToCss(preset.styles)}}">{{preset.title}}</span>
@@ -256,14 +258,17 @@
 </div>
 
 <div class="vcms-pop vcms-link" ng-if="showConfig.showLinkPop">
-  <form name="LinkForm" novalidate ng-submit="LinkForm.$valid && vcms.execCommand('createLink', $event, newLinkData) && togglePop('showLinkPop')">
+  <form name="LinkForm" novalidate
+        ng-submit="LinkForm.$valid && vcms.execCommand('createLink', $event, newLinkData) && togglePop('showLinkPop')">
     <label>
       URL {{hasAttr('href')}}
-      <input type="url" ng-model="newLinkData.url" ng-init="newLinkData.url = vcms.currentElement[0].getAttribute('href'); newLinkData.blank = (vcms.currentElement[0].getAttribute('target') === '_blank') ? true : false;" ng-required>
+      <input type="url" ng-model="newLinkData.url"
+             ng-init="newLinkData.url = vcms.currentElement[0].getAttribute('href'); newLinkData.blank = (vcms.currentElement[0].getAttribute('target') === '_blank') ? true : false;"
+             ng-required>
     </label>
     <label>
-      New Window
       <input type="checkbox" ng-model="newLinkData.blank">
+      in neuem Fenster öffnen
     </label>
     <p>
       <button type="submit">Save</button>
@@ -306,12 +311,12 @@
     <nav>
       <ul>
         <li>
-          <a class="btn super" ng-mousedown="vcms.saveImage($event);">Speichern</a>
+          <button type="button" ng-mousedown="vcms.saveImage($event);">Speichern</button>
         </li>
         <li>
-          <a class="btn minor" ng-mousedown="vcms.resetImage($event);">
-            <i class="ec-icon close"></i>
-          </a>
+          <button type="button" ng-mousedown="vcms.resetImage($event);">
+            <span class="ec-icon close"></span>
+          </button>
         </li>
       </ul>
     </nav>

@@ -1,16 +1,17 @@
 /// tooltip - 1.0.0
 
 %tooltip {
-  background-color: rgba(getColor(background, invert),.8);
+  background-color: rgba(getColor(background, invert), .8);
   color: getColor(text, invert);
   position: absolute;
   display: inline-block;
-  font-size: rem(10);
-  line-height: rem(20);
-  padding: 0 rem(8);
-  @extend %ellipsis;
-  max-width: rem(160);
-  @include border-radius(rem(4));
+  font-size: 10px;
+  line-height: 20px;
+  padding: 0 8px;
+  @include ellipsis;
+  max-width: 160px;
+  @include border-radius(4px);
+  z-index: 10;
 }
 
 [data-tooltip] {
@@ -25,7 +26,7 @@
   }
 
   &:hover {
-    &:before{
+    &:before {
       visibility: visible;
       opacity: 1;
     }
@@ -36,13 +37,13 @@
   &:before {
     right: 100%;
     top: 50%;
-    margin-top: rem(-10);
-    margin-right: rem(4);
-    @include transform(translateX(rem(-16)));
+    margin-top: -10px;
+    margin-right: 4px;
+    @include transform(translateX(-16px));
   }
 
-  &:hover{
-    &:before{
+  &:hover {
+    &:before {
       @include transform(translateX(0));
     }
   }
@@ -52,13 +53,13 @@
   &:before {
     left: 100%;
     top: 50%;
-    margin-top: rem(-10);
-    margin-left: rem(4);
-    @include transform(translateX(rem(16)));
+    margin-top: -10px;
+    margin-left: 4px;
+    @include transform(translateX(16px));
   }
 
-  &:hover{
-    &:before{
+  &:hover {
+    &:before {
       @include transform(translateX(0));
     }
   }
@@ -68,12 +69,12 @@
   &:before {
     bottom: 100%;
     left: 50%;
-    margin-bottom: rem(4);
-    @include transform(translate3D(-50%, rem(16), 0));
+    margin-bottom: 4px;
+    @include transform(translate3D(-50%, 16px, 0));
   }
 
-  &:hover{
-    &:before{
+  &:hover {
+    &:before {
       @include transform(translate3D(-50%, 0, 0));
     }
   }
@@ -83,12 +84,12 @@
   &:before {
     top: 100%;
     left: 50%;
-    margin-top: rem(4);
-    @include transform(translate3D(-50%, rem(-16), 0));
+    margin-top: 4px;
+    @include transform(translate3D(-50%, -16px, 0));
   }
 
-  &:hover{
-    &:before{
+  &:hover {
+    &:before {
       @include transform(translate3D(-50%, 0, 0));
     }
   }

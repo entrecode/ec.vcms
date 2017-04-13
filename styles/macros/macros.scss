@@ -1,17 +1,2 @@
-////
-/// macros.scss - 1.0.0
-/// @author Bernhard Ruoff
-///
-/// macro styles for xlcss sandbox template
-/// macro styles refer objects with multiple children which can be a combination of multiple global elements
-/// all styles should be highly adaptable for other project
-@import "hamburger";
-@import "label";
-@import "pill";
-@import "bubble";
-@import "header";
-@import "tooltip";
-@import "well";
-@import "input";
-@import "select";
-@import "dropdown";
+@import "data-tooltip";
+@import "vcms-dropdown";

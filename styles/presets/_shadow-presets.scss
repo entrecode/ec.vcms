@@ -1,54 +1,4 @@
-/// embossed styles for extension
-
-%embossed {
-  &%btn {
-    @include box-shadow(0 4px 8px rgba(black, 0.1), 0 4px 24px rgba(black, 0.1));
-
-    &:hover {
-      @include box-shadow(0 2px 4px rgba(black, 0.1), 0 2px 8px rgba(black, 0.1));
-    }
-    //position: relative;
-    //
-    //&:after {
-    //  content: '';
-    //  position: absolute;
-    //  bottom: 0;
-    //  left: 10%;
-    //  width: 80%;
-    //  height: 80%;
-    //  background-color: darken(getColor(base, link), 10%);
-    //  @include filter(blur(6px));
-    //  @include border-radius(inherit);
-    //  @include transition(all .2s);
-    //  z-index: -1;
-    //  opacity: 1;
-    //}
-    //
-    //&:hover {
-    //  &:after {
-    //    @include filter(blur(6px));
-    //    bottom: 6%;
-    //  }
-    //}
-    //
-    //&.super {
-    //  &:after {
-    //    background-color: getColor(base, super);
-    //  }
-    //}
-  }
-}
-
-/// shadow styles for extension
-
 %shadow {
-  &%hover {
-    @include box-shadow(0 0 0 2px getColor(state, hover));
-  }
-
-  &%input {
-    @include box-shadow(0 4px 16px rgba(getColor(base, super), .2), 0 4px 32px rgba(getColor(base, super), .1));
-  }
 
   &%dropdown {
     @include box-shadow(0 4px 8px rgba(black, 0.1), 0 4px 24px rgba(black, 0.1));
@@ -56,13 +6,5 @@
 
   &%overlay {
     @include box-shadow(0 4px 8px rgba(black, 0.1), 0 4px 24px rgba(black, 0.1));
-
-    &%big {
-      @include box-shadow(0 8px 16px rgba(black, 0.1), 0 8px 48px rgba(black, 0.2));
-    }
-  }
-
-  &%selected {
-    @include box-shadow(0 0 0 4px getColor(btn, minor));
   }
 }

@@ -1,43 +1,56 @@
 %toolbar {
   background-color: getColor(base, background);
-  margin: rem(8) rem(-4);
+  margin: 8px -4px;
+  font-family: $bodyFont;
 
   nav {
+    @include flexbox;
+    @include flex-wrap(wrap);
+
     ul.vcms-toolbar-group {
-      margin: 0 rem(4);
-      display: inline-block;
+      margin: 4px;
+      @include flex(0 0 auto);
 
       > li {
-        background-color: getColor(background, lightest);
         display: inline-block;
         position: relative;
 
-        .active {
-          > a {
-            background-color: getColor(state, hover);
-            font-weight: bold;
-            color: getColor(base, text);
+        &:first-child {
+          a {
+            @include border-radius(4px 0 0 4px);
           }
         }
 
+        &:last-child {
+          a {
+            @include border-radius(0 4px 4px 0);
+          }
+        }
+
+        .active {
+          > a {
+            background-color: getColor(state, active);
+            font-weight: bold;
+            color: setColor(getColor(state, active));
+          }
+        }
 
         a {
           color: getColor(text, light);
           display: inline-block;
-          min-width: rem(40);
-          height: rem(40);
-          font-size: em(16);
-          line-height: rem(24);
-          padding: rem(8);
+          min-width: 40px;
+          height: 40px;
+          font-size: 14px;
+          line-height: 24px;
+          padding: 8px;
           text-align: center;
-          @include border-radius(rem(4));
           cursor: pointer;
           @include user-select(none);
-          overflow: hidden;
+          background-color: getColor(background, lightest);
 
           &:hover {
             background-color: getColor(state, hover);
-            color: getColor(base, link);
+            color: setColor(getColor(state, hover));
           }
         }
 
@@ -46,6 +59,7 @@
             > a {
               font-weight: bold;
               color: getColor(base, text);
+              padding: 8px 16px;
             }
           }
         }
@@ -56,35 +70,4 @@
 
 .vcms-toolbar {
   @extend %toolbar;
-}
-
-.vcms-toolbar-dev {
-  @extend %toolbar;
-}
-
-.vcms-toolbar-controls {
-  @include transition(all .4s);
-
-  nav {
-    @include transform(translateX(24px));
-
-    ul {
-      text-align: center;
-
-      li {
-        display: inline-block;
-      }
-    }
-  }
-}
-
-.vcms-toolbar-placeholder {
-  background-color: getColor(background, lightest);
-  font-size: rem(14);
-  line-height: rem(24);
-  color: getColor(text, light);
-  font-style: italic;
-  text-align: center;
-  margin: rem(8) 0;
-  padding: rem(8);
 }

@@ -10,7 +10,7 @@
 /// TODO color function for btn.minor, btn.minorHover, state.hover
 
 // colormap
-$t5: (
+$colors: (
         base: (
                 "text": $text,
                 "background": $background,
@@ -59,6 +59,3 @@ $t5: (
                 "marked": $highlight
         )
 ) !default;
-
-// set custom map-name for getColor function
-$colors: $t5;
