@@ -1,6 +1,6 @@
 {
   "name": "ec.vcms",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lightweight Angular WYSIWYG editor based on JSON data structure. By entrecode.",
   "main": "build/ec-vcms.js",
   "scripts": {

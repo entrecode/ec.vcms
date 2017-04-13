@@ -85,7 +85,7 @@ The config object looks like:
     ['list', 'custom'],
     ['colors'],
     ['reset'],
-    ['undo', 'redo', 'html'],
+    ['html'],
   ],
 }
 ```
@@ -113,14 +113,14 @@ The following toolbar elements are supported:
 * `colors` Dropdown with colors set in the `colors` config param and hex input
 * `presets` List of custom style presets set in the `presets` config param to format the selected element
 * `reset` Button to reset style of the selected element
-* `undo` Undo button - **important**: adding elements and custom commands are currently not supported
-* `redo` Redo button - **important**: adding elements and custom commands are currently not supported
 * `html` Button to toggle html mode
 
 Future toolbar elements:
 
 * `icon`
 * `blockquote`
+* `undo` Undo button
+* `redo` Redo button
 
 The default config is:
 

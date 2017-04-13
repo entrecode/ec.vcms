@@ -1,17 +1,17 @@
 <div class="vcms-editor">
   <vcms-toolbar></vcms-toolbar>
-  <div class="vcms-html" ng-show="htmlMode"></div>
+  <div class="vcms-html" ng-show="vcms.htmlMode"></div>
 
-  <ng-transclude class="vcms-content" ng-hide="htmlMode"></ng-transclude>
+  <ng-transclude class="vcms-content" ng-hide="vcms.htmlMode"></ng-transclude>
 
-  <footer class="vcms-editor-footer">
+  <footer class="vcms-editor-footer" ng-if="!vcms.config.autosave">
     <nav>
       <ul>
         <li>
-          <button type="button" ng-mousedown="saveElement($event)" ng-disabled="!dirty">Speichern</button>
+          <button type="button" ng-mousedown="vcms.saveElement($event)" ng-disabled="!vcms.dirty">Speichern</button>
         </li>
         <li>
-          <button type="button" ng-mousedown="resetElement($event)" ng-show="dirty">
+          <button type="button" ng-mousedown="vcms.resetElement($event)" ng-show="vcms.dirty">
             <span class="ec-icon close"></span>
           </button>
         </li>

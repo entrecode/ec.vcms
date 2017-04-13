@@ -10,7 +10,7 @@
       </li>
     </ul>
     <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group"
-        ng-if="!vcms.htmlMode && (isTextElement() || vcms.htmlMode || vcms.isContainer())">
+        ng-if="!vcms.htmlMode && isTextElement()">
 
       <li ng-repeat="menu in toolbar" ng-switch="menu">
 
@@ -230,6 +230,11 @@
       <li ng-if="isTextElement() || isContainer()">
         <a ng-mousedown="vcms.deleteElement($event)">
           <span class="ec-icon trash"></span>
+        </a>
+      </li>
+      <li>
+        <a ng-if="vcms.config.autosave && vcms.dirty" ng-mousedown="vcms.resetElement($event)">
+          <i class="ec-icon close"></i>
         </a>
       </li>
     </ul>
