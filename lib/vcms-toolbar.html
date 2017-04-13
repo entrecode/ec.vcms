@@ -230,6 +230,11 @@
           <i class="ec-icon trash"></i>
         </a>
       </li>
+      <li>
+        <a ng-if="vcms.config.autosave && vcms.dirty" ng-mousedown="vcms.resetElement($event)">
+          <i class="ec-icon close"></i>
+        </a>
+      </li>
     </ul>
   </nav>
 </div>

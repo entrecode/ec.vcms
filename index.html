@@ -9,6 +9,10 @@
   <script>
     angular.module('demoapp', ['ec.vcms'])
     .controller('ctrl', ($scope) => {
+      $scope.onSave = () => {
+        console.log('SAVED');
+      };
+
       $scope.config = {
         colors: ['lightgrey', 'orange', 'pink'],
         tags: ['h1', 'h2', 'p'],
@@ -32,6 +36,7 @@
           img: 'Bild',
           small: 'Kleiner',
         },
+        autosave: false,
         custom: [{
           title: 'Lila',
           preview: '<div style="color: violet;">LILA</div>',
@@ -70,7 +75,7 @@
 </head>
 <body ng-app="demoapp" ng-controller="ctrl">
 <div data-container>
-  <ec-vcms json="json" config="config">
+  <ec-vcms json="json" config="config" on-save="onSave">
     <h1 style="text-align: center;">TEST</h1>
     <b style="color: red;">BOLD</b><br>
     <i>ITALIC</i><br>
