@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "codemirror": "^5.25.0",
+    "pretty": "^2.0.0",
     "visual-cms.core": "^0.2.0",
     "xlcss": "^2.2.0"
   },

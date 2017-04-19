@@ -8,6 +8,12 @@
           <span class="ec-icon code"></span>
         </a>
       </li>
+      <li>
+        <a data-tooltip="HTML formatieren" data-tooltip-position="bottom" data-tooltip-delay
+           ng-mousedown="vcms.beautifyHtml($event)">
+          <span class="ec-icon list-number"></span>
+        </a>
+      </li>
     </ul>
     <ul ng-repeat="toolbar in vcms.config.toolbar" class="vcms-toolbar-group"
         ng-if="!vcms.htmlMode && isTextElement()">
