@@ -1,40 +1,29 @@
 ////
-/// colors.scss - 1.0.0
+/// colors.scss - 2.0.0
 /// @author Bernhard Ruoff
 ///
 /// color map for xlcss based projects
 /// @param {variable} $colors [$colors] - set a custom variable for each project
 /// @require custom variable for $colors
-///
-/// TODO check for simplification
-/// TODO color function for btn.minor, btn.minorHover, state.hover
 
 // colormap
-$colors: (
+$vcms: (
         base: (
                 "text": $text,
                 "background": $background,
                 "link": $link,
                 "linkHover": varColor($link, -10),
+                "minor": $minor,
+                "minorHover": varColor($minor, -10),
                 "super": $super,
                 "superHover": varColor($super, -10),
                 "highlight": $highlight,
+                "highlightHover": varColor($highlight, -10),
                 "divider": rgba($text, .1),
                 "border": borderColor($background, $text)
         ),
-        btn: (
-                "default": $link,
-                "defaultHover": varColor($link, -10),
-                "super": $super,
-                "superHover": varColor($super, -10),
-                "minor": rgba($minor, .1),
-                "minorHover": rgba($minor, .2),
-                "pill": rgba($text, .1),
-                "pillHover": rgba($text, .2)
-        ),
         text: (
                 "invert": $background,
-                "highlight": $highlight,
                 "light": rgba($text, .6),
                 "lighter": rgba($text, .4),
                 "lightest": rgba($text, .2),
@@ -51,11 +40,11 @@ $colors: (
                 "selected": rgba(desaturate($link, 20), .4),
                 "active": $link,
                 "disabled": rgba($text, .2),
-                "notification": systemColor(#80D8FF),
+                "info": systemColor(#80D8FF),
                 "error": systemColor(red),
                 "success": systemColor(#00E676),
                 "warning": systemColor(orange),
-                "urgend": $super,
-                "marked": $highlight
         )
 ) !default;
+
+$colors: $vcms;
