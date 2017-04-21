@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { VcmsComponent } from './vcms.component';
-import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { VcmsToolbarComponent } from './vcms.toolbar.component';
 
