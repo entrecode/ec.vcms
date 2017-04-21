@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'vcms-toolbar',
+  selector: 'ec-vcms-toolbar',
   templateUrl: './vcms.toolbar.component.html',
   styleUrls: ['./vcms.toolbar.component.scss']
 })

@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   Component,
   ElementRef,
-  EventEmitter, forwardRef,
+  EventEmitter,
   Input,
   OnChanges,
   Output,
@@ -77,8 +77,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     if (this.readonly) {
       if (this.json) {
         this.editor.nativeElement.innerHTML = core.toDOM(this.json);
-      }
-      if (this.html) {
+      } else if (this.html) {
         this.editor.nativeElement.innerHTML = this.html;
       }
     }
@@ -87,8 +86,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
   ngAfterContentInit(): void {
     if (this.json) {
       this.editor.nativeElement.innerHTML = core.toDOM(this.json);
-    }
-    if (this.html) {
+    } else if (this.html) {
       this.editor.nativeElement.innerHTML = this.html;
     }
 
@@ -190,15 +188,11 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
         if (node) {
           const selection = window.getSelection();
           const range = document.createRange();
-          try {
-            if (range) {
-              range.selectNode(node);
-              range.setEnd(node, 1);
-              selection.removeAllRanges();
-              selection.addRange(range);
-            }
-          } catch (err) {
-
+          range.selectNode(node);
+          range.setEnd(node, 1);
+          if (document.body.contains(range.startContainer)) {
+            selection.removeAllRanges();
+            selection.addRange(range);
           }
           if (this.currentElement) {
             this.currentElement = node;
@@ -375,13 +369,10 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
       }
     }
     this.currentElement = el;
-    try {
-      if (range) {
-        range.selectNodeContents(el);
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
-    } catch (err) {
+    range.selectNodeContents(el);
+    if (document.body.contains(range.startContainer)) {
+      selection.removeAllRanges();
+      selection.addRange(range);
     }
     if (!this.isContainer(e.target) && type) {
       for (const attr of e.target.attributes) {

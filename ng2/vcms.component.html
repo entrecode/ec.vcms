@@ -1,5 +1,5 @@
 <div class="vcms-editor" [class.readonly]="readonly">
-  <vcms-toolbar [vcms]="this" *ngIf="!readonly"></vcms-toolbar>
+  <ec-vcms-toolbar [vcms]="this" *ngIf="!readonly && !config.externalToolbar"></ec-vcms-toolbar>
   <div class="vcms-html" [hidden]="!htmlMode" #htmlEditor></div>
 
   <div class="vcms-content" [hidden]="htmlMode" #editor></div>

@@ -30,6 +30,6 @@ const adapter = new UpgradeAdapter(forwardRef(() => VcmsModule));
 
 angular.module('ec.vcms', [])
 .directive('ecVcms', adapter.downgradeNg2Component(VcmsComponent))
-.directive('vcmsToolbar', adapter.downgradeNg2Component(VcmsToolbarComponent));
+.directive('ecVcmsToolbar', adapter.downgradeNg2Component(VcmsToolbarComponent));
 
-adapter.bootstrap(document.body, ['ec.vcms']);
+adapter.bootstrap(document.getElementById('old'), ['ec.vcms']);
