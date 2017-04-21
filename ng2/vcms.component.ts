@@ -11,7 +11,7 @@ import {
 import * as core from 'visual-cms.core';
 import * as CodeMirror from 'codemirror/lib/codemirror';
 import * as pretty from 'pretty';
-import { DomSanitizer } from '@angular/platform-browser';
+import * as htmlMixed from 'codemirror/mode/htmlmixed/htmlmixed';
 
 @Component({
   selector: 'ec-vcms',
@@ -37,8 +37,9 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
   private restore: any;
   public dirty: boolean;
   private codemirror: any;
+  private mode: any = htmlMixed;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor() {
     this.config = this.config || {
         colors: ['#EE4266', '#2A1E5C', '#0A0F0D', '#C4CBCA', '#3CBBB1'],
         tags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'],
@@ -72,7 +73,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
       };
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.readonly) {
       if (this.json) {
         this.editor.nativeElement.innerHTML = core.toDOM(this.json);
@@ -83,7 +84,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     }
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     if (this.json) {
       this.editor.nativeElement.innerHTML = core.toDOM(this.json);
     }
@@ -151,14 +152,14 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     setTimeout(this.refresh.bind(this));
   }
 
-  isContainer(e) {
+  isContainer(e): boolean {
     if (e) {
       return e === this.editor.nativeElement;
     }
     return this.currentElement === this.editor.nativeElement;
   }
 
-  getParents(el) {
+  getParents(el): Array<HTMLElement> {
     const els = [];
     while (el) {
       els.unshift(el);
@@ -167,7 +168,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     return els;
   }
 
-  normalizeHTML(el) {
+  normalizeHTML(el): void {
     el.childNodes.forEach((el) => {
       if (el) {
         if (el.childNodes) {
@@ -207,7 +208,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     });
   }
 
-  placeCaretAtEnd(el) {
+  placeCaretAtEnd(el): void {
     if (el.localName === 'br') {
       el = el.previousSibling;
     }
@@ -223,7 +224,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     sel.addRange(range);
   }
 
-  refresh() {
+  refresh(): void {
     if (!this.editor.nativeElement.innerHTML.length) {
       delete this.currentElement;
       delete this.tag;
@@ -247,7 +248,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.jsonChange.emit(this.editor.nativeElement.innerHTML !== '' ? core.toJSON(this.editor.nativeElement.innerHTML.replace(/\s?contenteditable="(\w*)"/ig, '')) : []);
   }
 
-  prevent(e) {
+  prevent(e): boolean {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -257,7 +258,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     return true;
   }
 
-  makeEditable(e) {
+  makeEditable(e): void {
     if (e !== this.editor.nativeElement) {
       if (this.currentElement && this.currentElement !== e) {
         this.currentElement.removeAttribute('contenteditable');
@@ -271,20 +272,20 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.refresh();
   }
 
-  saveImage(e) {
+  saveImage(e): void {
     this.currentElement.setAttribute('src', this.src);
     this.refresh();
     this.prevent(e);
   };
 
-  resetImage(e) {
+  resetImage(e): void {
     delete this.currentElement;
     delete this.tag;
     delete this.src;
     this.prevent(e);
   };
 
-  execCommand(command, e, data) {
+  execCommand(command, e, data): boolean {
     this.editor.nativeElement.setAttribute('contenteditable', true);
     const selection = window.getSelection();
     if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote'].indexOf(command) !== -1) {
@@ -340,7 +341,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     return true;
   };
 
-  jsonToCss(json) {
+  jsonToCss(json): string {
     let css = '';
     Object.keys(json).forEach((key) => {
       css += `${key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}: ${json[key]}; `;
@@ -348,7 +349,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     return css;
   };
 
-  addElement(e, type) {
+  addElement(e, type): void {
     if (!this.restore && this.json) {
       this.restore = Object.assign(this.json);
     }
@@ -392,7 +393,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.prevent(e);
   };
 
-  saveElement(e) {
+  saveElement(e): void {
     if (typeof this.save === 'function') {
       this.save();
     }
@@ -402,7 +403,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.prevent(e);
   };
 
-  resetElement(e) {
+  resetElement(e): void {
     if (this.restore) {
       this.editor.nativeElement.innerHTML = core.toDOM(this.restore);
       this.restore = null;
@@ -415,7 +416,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.prevent(e);
   };
 
-  deleteElement(e) {
+  deleteElement(e): void {
     if (this.currentElement !== this.editor.nativeElement) {
       this.editor.nativeElement.removeChild(this.currentElement);
       this.refresh();
@@ -427,13 +428,13 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     }
   };
 
-  beautifyHtml(e) {
+  beautifyHtml(e): void {
     this.editor.nativeElement.innerHTML = pretty(this.editor.nativeElement.innerHTML, { ocd: true });
     this.codemirror.setValue(pretty(this.editor.nativeElement.innerHTML, { ocd: true }));
     this.prevent(e);
   };
 
-  toggleHtml(e) {
+  toggleHtml(e): void {
     if (this.currentElement) {
       this.currentElement.removeAttribute('contenteditable');
       delete this.currentElement;
@@ -460,7 +461,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.prevent(e);
   };
 
-  toggleClass(cl, remove) {
+  toggleClass(cl, remove): void {
     if (remove) {
       remove.forEach((cl) => {
         this.currentElement.classList.remove(cl);
@@ -471,7 +472,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     }
   };
 
-  toggleAttribute(at, val, remove) {
+  toggleAttribute(at, val, remove): void {
     if (remove) {
       remove.forEach((at) => {
         this.currentElement.style[at] = '';
@@ -480,7 +481,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
     this.currentElement.style[at] = val;
   };
 
-  applyStyle(styles) {
+  applyStyle(styles): void {
     this.currentElement.setAttribute('style', this.jsonToCss(styles));
   };
 

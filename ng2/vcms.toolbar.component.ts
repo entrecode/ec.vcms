@@ -10,13 +10,13 @@ export class VcmsToolbarComponent {
   showConfig: any = {};
   link: any = {};
 
-  isTextElement() {
+  isTextElement(): boolean {
     const elements = [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote', 'cite', 'strong', 'em', 'a', 'ul', 'ol', 'span',
       'div', 'small'];
     if (this.vcms.currentElement) {
       return elements.indexOf(this.vcms.tag) !== -1 ||
-        elements.find((el) => {
+        elements.some((el) => {
           if (this.vcms.currentElement.parentNode) {
             return this.vcms.currentElement.parentNode.localName === el;
           }
@@ -26,11 +26,11 @@ export class VcmsToolbarComponent {
     return false;
   }
 
-  getSynonym(tag) {
+  getSynonym(tag): string {
     return this.vcms.config.synonyms[tag || this.vcms.tag];
   }
 
-  isImgElement() {
+  isImgElement(): boolean {
     if (this.vcms.currentElement) {
       this.showConfig.showImagePop = true;
       return this.vcms.tag === 'img';
@@ -38,7 +38,7 @@ export class VcmsToolbarComponent {
     return false;
   }
 
-  hasAttr(attr, value) {
+  hasAttr(attr, value): boolean | string {
     if (this.vcms.currentElement) {
       if (value) {
         return this.vcms.currentElement.style[attr] === value;
@@ -48,21 +48,21 @@ export class VcmsToolbarComponent {
     return false;
   }
 
-  hasClass(cl) {
+  hasClass(cl): boolean {
     if (cl && this.vcms.currentElement) {
       return this.vcms.currentElement.classList.contains(cl);
     }
     return false;
   }
 
-  hasChild(childTag) {
+  hasChild(childTag): boolean | number {
     if (childTag && this.vcms.currentElement) {
       return this.vcms.currentElement.getElementsByTagName(childTag).length;
     }
     return false;
   }
 
-  togglePop(popKey) {
+  togglePop(popKey): void {
     const newValue = !this.showConfig[popKey];
     Object.keys(this.showConfig).forEach((key) => {
       this.showConfig[key] = false;
@@ -75,5 +75,4 @@ export class VcmsToolbarComponent {
     }
     this.showConfig[popKey] = newValue;
   }
-
 }
