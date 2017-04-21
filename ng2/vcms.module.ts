@@ -1,7 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { VcmsComponent } from './vcms.component';
 import { CommonModule } from '@angular/common';
@@ -14,7 +12,6 @@ import { VcmsToolbarComponent } from './vcms.toolbar.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
     FormsModule,
   ],
   exports: [
@@ -22,4 +19,5 @@ import { VcmsToolbarComponent } from './vcms.toolbar.component';
     VcmsComponent,
   ],
 })
-export class VcmsModule { }
+export class VcmsModule {
+}
