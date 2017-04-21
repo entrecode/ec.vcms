@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, forwardRef,
   Input,
   OnChanges,
   Output,
