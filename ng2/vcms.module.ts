@@ -30,8 +30,7 @@ try {
   angular.module('ec.vcms', [])
   .directive('ecVcms', adapter.downgradeNg2Component(VcmsComponent))
   .directive('ecVcmsToolbar', adapter.downgradeNg2Component(VcmsToolbarComponent));
-
   adapter.bootstrap(document.getElementById('old'), ['ec.vcms']);
 } catch (err) {
-  console.log('skipping downgrade: angularJS not installed', err);
+  console.log('skipping downgrade: angularJS not installed');
 }
