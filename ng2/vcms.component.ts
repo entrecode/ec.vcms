@@ -385,7 +385,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
   };
 
   saveElement(e): void {
-    this.save.emit();
+    this.save.emit(e);
     this.dirty = false;
     this.restore = null;
     this.refresh();
