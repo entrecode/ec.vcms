@@ -12,6 +12,7 @@ import * as core from 'visual-cms.core';
 import * as CodeMirror from 'codemirror/lib/codemirror.js';
 import * as pretty from 'pretty';
 import * as htmlMixed from 'codemirror/mode/htmlmixed/htmlmixed.js';
+import { VcmsToolbarComponent } from './vcms.toolbar.component';
 
 @Component({
   selector: 'ec-vcms',
@@ -27,6 +28,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
   @Input() readonly: boolean;
   @Input() config: any;
   @Input() custom: any;
+  @Input() toolbar: VcmsToolbarComponent;
   @ViewChild('editor') editor: ElementRef;
   @ViewChild('htmlEditor') htmlEditor: ElementRef;
 
