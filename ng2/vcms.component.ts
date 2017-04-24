@@ -9,9 +9,9 @@ import {
   ViewChild
 } from '@angular/core';
 import * as core from 'visual-cms.core';
-import * as CodeMirror from 'codemirror/lib/codemirror';
+import * as CodeMirror from 'codemirror/lib/codemirror.js';
 import * as pretty from 'pretty';
-import * as htmlMixed from 'codemirror/mode/htmlmixed/htmlmixed';
+import * as htmlMixed from 'codemirror/mode/htmlmixed/htmlmixed.js';
 
 @Component({
   selector: 'ec-vcms',
@@ -386,7 +386,7 @@ export class VcmsComponent implements AfterContentInit, OnChanges {
 
   saveElement(e): void {
     if (typeof this.save === 'function') {
-      this.save();
+      this.save.emit();
     }
     this.dirty = false;
     this.restore = null;
