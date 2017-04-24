@@ -25,12 +25,13 @@ declare const angular: any;
 })
 export class VcmsModule {
 }
-
-if (angular) {
+try {
   const adapter = new UpgradeAdapter(forwardRef(() => VcmsModule));
   angular.module('ec.vcms', [])
   .directive('ecVcms', adapter.downgradeNg2Component(VcmsComponent))
   .directive('ecVcmsToolbar', adapter.downgradeNg2Component(VcmsToolbarComponent));
 
   adapter.bootstrap(document.getElementById('old'), ['ec.vcms']);
+} catch (err) {
+  console.log('skipping downgrade: angularJS not installed', err);
 }
