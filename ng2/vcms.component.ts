@@ -21,7 +21,7 @@ import * as htmlMixed from 'codemirror/mode/htmlmixed/htmlmixed.js';
 export class VcmsComponent implements AfterContentInit, OnChanges {
   @Output() jsonChange: EventEmitter<any> = new EventEmitter();
   @Output() htmlChange: EventEmitter<any> = new EventEmitter();
-  @Output() save: EventEmitter<any> = new EventEmitter();
+  @Output('onSave') save: EventEmitter<any> = new EventEmitter<any>();
   @Input() json: any;
   @Input() html: any;
   @Input() readonly: boolean;
