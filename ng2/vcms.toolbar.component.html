@@ -1,0 +1,348 @@
+<div class="vcms-toolbar">
+  <nav>
+    <!--html mode-->
+    <ul class="vcms-toolbar-group" [hidden]="!vcms.htmlMode">
+      <li>
+        <a data-tooltip="Live-Modus" data-tooltip-position="top" data-tooltip-delay
+           (mousedown)="vcms.toggleHtml($event)">
+          <span class="ec-icon photo-view-all"></span>
+        </a>
+      </li>
+      <li>
+        <a data-tooltip="HTML formatieren" data-tooltip-position="top" data-tooltip-delay
+           (mousedown)="vcms.beautifyHtml($event)">
+          <span class="ec-icon list-number"></span>
+        </a>
+      </li>
+    </ul>
+    <ul *ngFor="let toolbar of vcms.config.toolbar" class="vcms-toolbar-group"
+        [hidden]="vcms.htmlMode && !isTextElement()">
+      <li *ngFor="let menu of toolbar" [ngSwitch]="menu">
+        <!--Format-->
+        <ul class="vcms-tags vcms-dropdown" *ngSwitchCase="'tags'">
+          <li tabindex="0">
+            <a data-tooltip="Elemententyp" data-tooltip-position="top"
+               data-tooltip-delay>
+              {{getSynonym()}}
+            </a>
+            <ul class="vcms-dropdown-options center">
+              <li [class.active]="vcms.tag === tag" *ngFor="let tag of vcms.config.tags">
+                <a (mousedown)="vcms.execCommand(tag, $event)">{{getSynonym(tag)}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!--Italic-->
+        <div [class.active]="vcms.tag === 'em'" *ngSwitchCase="'italic'">
+          <a (mousedown)="vcms.execCommand('italic', $event)" data-tooltip="Kursiv"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon italic"></span>
+          </a>
+        </div>
+
+        <!--Bold-->
+        <div [class.active]="vcms.tag === 'strong'" *ngSwitchCase="'bold'">
+          <a (mousedown)="vcms.execCommand('bold', $event)" data-tooltip="Fett"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon bold"></span>
+          </a>
+        </div>
+
+        <!--link-->
+        <div [class.active]="vcms.tag === 'a'" *ngSwitchCase="'link'">
+          <a (mousedown)="togglePop('showLinkPop')" data-tooltip="Link"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon link"></span>
+          </a>
+        </div>
+
+        <!--align-->
+        <ul class="vcms-align vcms-dropdown" *ngSwitchCase="'align'">
+          <li tabindex="0">
+            <a data-tooltip="Textausrichtung"
+               data-tooltip-position="top" data-tooltip-delay>
+              <span class="ec-icon"
+                    [ngClass]="{'align-left': hasAttr('textAlign', 'left') || !hasAttr('textAlign'), 'align-center': hasAttr('textAlign', 'center'), 'align-right': hasAttr('textAlign', 'right')}"></span>
+            </a>
+            <ul class="vcms-dropdown-options center">
+              <li [ngClass]="{'active' : hasAttr('textAlign', 'left') || !hasAttr('textAlign')}">
+                <a (mousedown)="vcms.execCommand('justifyLeft', $event)">
+                  <span class="ec-icon align-left"></span>
+                </a>
+              </li>
+              <li [ngClass]="{'active' : hasAttr('textAlign', 'center')}">
+                <a (mousedown)="vcms.execCommand('justifyCenter', $event)">
+                  <span class="ec-icon align-center"></span>
+                </a>
+              </li>
+              <li [ngClass]="{'active' : hasAttr('textAlign', 'right')}">
+                <a (mousedown)="vcms.execCommand('justifyRight', $event)">
+                  <span class="ec-icon align-right"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!--font-size-->
+        <ul class="vcms-font-size vcms-dropdown" *ngSwitchCase="'size'">
+          <li tabindex="0">
+            <a data-tooltip="Schriftgröße"
+               data-tooltip-position="top" data-tooltip-delay>
+              <span class="ec-icon font-size"></span>
+            </a>
+            <ul class="vcms-dropdown-options center">
+              <li [class.active]="hasClass('text-big')">
+                <a (mousedown)="vcms.toggleClass('text-big', ['text-small'])">
+                  groß
+                </a>
+              </li>
+              <li [class.active]="!hasClass('text-big') && vcms.tag !== 'small'">
+                <a (mousedown)="vcms.execCommand('p', $event); vcms.toggleClass(null, ['text-big', 'text-small']);">
+                  normal
+                </a>
+              </li>
+              <li [class.active]="vcms.tag === 'small'">
+                <a (mousedown)="vcms.execCommand('decreaseFontSize', $event); vcms.toggleClass('text-small', ['text-big']);">
+                  klein
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!--list-->
+        <ul class="vcms-list-style vcms-dropdown" *ngSwitchCase="'list'">
+          <li tabindex="0">
+            <a data-tooltip="Liste"
+               data-tooltip-position="top" data-tooltip-delay>
+              <span class="ec-icon list-bullets"></span>
+            </a>
+            <ul class="vcms-dropdown-options center">
+              <li [class.active]="hasChild('ul')">
+                <a (mousedown)="vcms.execCommand('insertUnorderedList', $event)">
+                  <span class="ec-icon list-bullets"></span>
+                </a>
+              </li>
+              <li [class.active]="hasChild('ol')">
+                <a (mousedown)="vcms.execCommand('insertOrderedList', $event)">
+                  <span class="ec-icon list-number"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!--blockquote-->
+        <div [class.active]="vcms.tag === 'blockquote'" *ngSwitchCase="'blockquote'">
+          <a (mousedown)="vcms.execCommand('blockquote', $event)" data-tooltip="Zitat"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon quote-closing"></span>
+          </a>
+        </div>
+
+        <!--image-->
+        <div [class.active]="vcms.tag === 'img'" *ngSwitchCase="'image'">
+          <a (mousedown)="vcms.execCommand('insertImage', $event)" data-tooltip="Bild"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon img"></span>
+          </a>
+        </div>
+
+        <!--icons-->
+        <div *ngSwitchCase="'icon'">
+          <a data-tooltip="Icon" data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon smiley"></span>
+          </a>
+        </div>
+
+        <!--modules-->
+        <div [hidden]="!vcms.config.custom?.length" *ngSwitchCase="'custom'">
+          <a (mousedown)="togglePop('showCustomElementPop')" data-tooltip="Weitere Elemente"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon add"></span>
+          </a>
+        </div>
+
+        <!--colorpicker-->
+        <div class="vcms-colorpicker" *ngSwitchCase="'colors'">
+          <a [style.background-color]="hasAttr('color', color)"
+             (mousedown)="colorpickerActive =! colorpickerActive"
+             [class.active]="!hasAttr('color', color)" class="vcms-colorpicker-selected"
+             data-tooltip="Farbe"
+             data-tooltip-position="top" data-tooltip-delay>
+          </a>
+          <div class="vcms-colorpicker-options" [class.active]="colorpickerActive">
+            <div class="vcms-colorpicker-close"
+                 (mousedown)="colorpickerActive =! colorpickerActive">
+              &times;
+            </div>
+            <ul class="vmcs-colorpicker-available">
+              <li [class.active]="hasAttr('color', color)"
+                  *ngFor="let color of vcms.config.colors">
+                <a [style.background-color]="color"
+                   (mousedown)="vcms.toggleAttribute('color', color)"></a>
+              </li>
+            </ul>
+            <div class="vcms-colopicker-input">
+              <label>
+                <small>HEX</small>
+                <input type="text" [ngModel]="customColor"
+                       (ngModelChange)="vcms.toggleAttribute('color', $event)"
+                       placeholder="z.B.: #ff5500">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!--presets-->
+        <div [hidden]="!vcms.config.presets?.length" *ngSwitchCase="'presets'">
+          <a (mousedown)="togglePop('showStylePresetsPop')" data-tooltip="Style Presets"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon harry-potter"></span>
+          </a>
+        </div>
+
+        <!--reset style-->
+        <div *ngSwitchCase="'reset'">
+          <a (mousedown)="vcms.execCommand('removeFormat', $event)"
+             data-tooltip="Formatierung löschen" data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon format-clear"></span>
+          </a>
+        </div>
+
+        <!--undo -->
+        <div *ngSwitchCase="'undo'">
+          <a (mousedown)="vcms.execCommand('undo', $event)" data-tooltip="rückgängig machen"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon undo"></span>
+          </a>
+        </div>
+
+        <!--redo-->
+        <div *ngSwitchCase="'redo'">
+          <a (mousedown)="vcms.execCommand('redo', $event)" data-tooltip="wiederherstellen"
+             data-tooltip-position="top" data-tooltip-delay>
+            <span class="ec-icon redo"></span>
+          </a>
+        </div>
+
+        <!--html mode-->
+        <div *ngSwitchCase="'html'">
+          <a data-tooltip="Quellcode" data-tooltip-position="top" data-tooltip-delay
+             (mousedown)="vcms.toggleHtml($event)">
+            <span class="ec-icon code"></span>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="vcms-toolbar-group" *ngIf="!vcms.htmlMode">
+      <li>
+        <a (mousedown)="vcms.addElement($event)" data-tooltip="Neues Element"
+           data-tooltip-position="top" data-tooltip-delay>
+          <span class="ec-icon add"></span>
+        </a>
+      </li>
+      <li *ngIf="isTextElement() || vcms.isContainer()">
+        <a (mousedown)="vcms.deleteElement($event)" data-tooltip="Element löschen"
+           data-tooltip-position="top" data-tooltip-delay>
+          <span class="ec-icon trash"></span>
+        </a>
+      </li>
+      <li>
+        <a *ngIf="vcms.config.autosave && vcms.dirty" (mousedown)="vcms.resetElement($event)"
+           data-tooltip="Änderungen zurücksetzen"
+           data-tooltip-position="top" data-tooltip-delay>
+          <i class="ec-icon close"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="vcms-pop vcms-customs" *ngIf="showConfig.showCustomElementPop">
+  <ul>
+    <li [class.active]="vcms.tag === tag" *ngFor="let custom of vcms.config.custom">
+      <a (mousedown)="custom.command(vcms.currentElement, $event);togglePop('showCustomElementPop');">
+        {{custom.title}}
+        <div [innerHTML]="custom.preview"></div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="vcms-pop vcms-presets" *ngIf="showConfig.showStylePresetsPop">
+  <ul>
+    <li *ngFor="let preset of vcms.config.presets">
+      <a (mousedown)="vcms.applyStyle(preset.styles);toggleStylePresetsPop();">
+        <span [style]="vcms.jsonToCss(preset.styles)">{{preset.title}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="vcms-pop vcms-link" *ngIf="showConfig.showLinkPop">
+  <label>
+    URL {{vcms.currentElement.getAttribute('href')}}
+    <input type="url" [(ngModel)]="link.url">
+  </label>
+  <label>
+    <input type="checkbox" [(ngModel)]="link.blank">
+    in neuem Fenster öffnen
+  </label>
+  <p>
+    <button type="submit" [disabled]="!link.url"
+            (click)="vcms.execCommand('createLink', $event, link) && togglePop('showLinkPop')">
+      Save
+    </button>
+  </p>
+</div>
+
+<div class="vcms-pop vcms-image" *ngIf="isImgElement()">
+  <div class="ec-tabs-default">
+    <div data-title="Source">
+      <label>
+        Externe Url
+        <input type="text" [(ngModel)]="vcms.src">
+      </label>
+      <div class="vcms-image-preview">
+        <img [src]="vcms.src">
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" checked="checked">
+        automatische Größe
+      </label>
+    </div>
+
+    <div data-title="Style">
+      <div data-row>
+        <div data-col="6sm" class="vcms-image-preview">
+          <img [src]="vcms.src">
+        </div>
+        <div data-col="6sm" class="vcms-image-preview">
+          <img [src]="vcms.src">
+        </div>
+      </div>
+    </div>
+    <div data-title="Custom">
+      Custom
+    </div>
+  </div>
+
+  <footer class="vcms-pop-footer">
+    <nav>
+      <ul>
+        <li>
+          <button type="button" (mousedown)="vcms.saveImage($event);">Speichern</button>
+        </li>
+        <li>
+          <button type="button" (mousedown)="vcms.resetImage($event);">
+            <span class="ec-icon close"></span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </footer>
+</div>
