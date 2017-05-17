@@ -16,6 +16,9 @@ module.exports = {
         test: /\.js$/,
         use: [{
           loader: 'babel-loader',
+          options: {
+            presets: ['es2015'],
+          },
         }],
       },
       {
@@ -38,6 +41,9 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
+            options: {
+              plugins: () => [require('autoprefixer')],
+            },
           },
         ],
       },
@@ -55,6 +61,9 @@ module.exports = {
           },
           {
             loader: 'postcss-loader',
+            options: {
+              plugins: () => [require('autoprefixer')],
+            },
           },
         ],
       },
@@ -66,18 +75,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        babel: {
-          presets: ['es2015'],
-        },
-        postcss: [
-          autoprefixer({
-            browsers: ['last 2 version'],
-          }),
-        ],
-      },
-    }),
-  ],
 };

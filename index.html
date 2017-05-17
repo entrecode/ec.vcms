@@ -13,6 +13,10 @@
         console.log('SAVED');
       };
 
+      $scope.reset = function () {
+        $scope.json = {};
+      };
+
       $scope.config = {
         colors: ['lightgrey', 'orange', 'pink'],
         tags: ['h1', 'h2', 'p'],
@@ -76,14 +80,8 @@
 <body ng-app="demoapp" ng-controller="ctrl">
 <div data-container>
   <ec-vcms json="json" config="config" on-save="onSave">
-    <h1 style="text-align: center;">TEST</h1>
-    <b style="color: red;">BOLD</b><br>
-    <i>ITALIC</i><br>
-    <p>TEXT</p>
-    <a class="btn" href="https://entrecode.de">BUTTON</a>
-    <img src="https://unsplash.it/200/200">
-    <small>tolles Bild</small>
   </ec-vcms>
+  <button ng-click="reset()">Reset JSON</button>
   <code style="white-space: pre-line">{{json}}</code>
 </div>
 </body>
