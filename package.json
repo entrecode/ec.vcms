@@ -19,7 +19,7 @@
     "codemirror": "^5.25.2",
     "pretty": "^2.0.0",
     "visual-cms.core": "^0.2.1",
-    "xlcss": "^2.2.1",
+    "xlcss": "^3.0.1",
     "@angular/common": "^4.1.2",
     "@angular/compiler": "^4.1.2",
     "@angular/core": "^4.1.2",

@@ -1,5 +1,7 @@
 ul.vcms-dropdown {
-  @extend ul.unstyled;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   outline: none;
 
   > li {
